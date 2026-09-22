@@ -5,11 +5,12 @@ use App\Http\Controllers\PemesananController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('dashboard');
-});
+    return view('home');
+})->name('home');
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    $pemesanan = \App\Models\Pemesanan::where('user_id', \Illuminate\Support\Facades\Auth::id())->latest()->get();
+    return view('dashboard', compact('pemesanan'));
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
