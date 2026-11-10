@@ -21,5 +21,6 @@ class Pemesanan extends Model
         'tanggal_pesan',
         'durasi',
         'total_bayar',
+        'diskon',
     ];
 }

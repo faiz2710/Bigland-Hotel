@@ -1,68 +1,57 @@
 <!DOCTYPE html>
 <html lang="id" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bigland - Modern Luxury Hotel & Suites</title>
-    
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <!-- Phosphor Icons -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    
+
     <!-- Alpine.js -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.3/dist/cdn.min.js"></script>
 
-    <!-- Google Fonts: Plus Jakarta Sans (Single Consistent Font) -->
+    <!-- Google Fonts: Plus Jakarta Sans & Playfair Display -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: {
                         sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        serif: ['"Playfair Display"', 'Georgia', 'serif'],
                     },
                     colors: {
-                        stone: {
-                            50: '#fafaf9',
-                            100: '#f5f5f4',
-                            200: '#e7e5e4',
-                            300: '#d6d3d1',
-                            400: '#a8a29e',
-                            500: '#78716c',
-                            800: '#292524',
-                            900: '#1c1917',
+                        page: '#FAF7F2',
+                        caramel: {
+                            DEFAULT: '#B08D57',
+                            hover: '#9c7743',
+                            dark: '#8a6635',
+                            light: '#f5ede2',
+                            border: '#e4d4be',
                         },
-                        obsidian: {
-                            50: '#f6f7f8',
-                            100: '#eceff1',
-                            800: '#1a1f26',
-                            900: '#10141a',
-                            950: '#090c0f',
-                        },
-                        gold: {
-                            400: '#dfb958',
-                            500: '#c79d39',
-                            600: '#ab8124',
+                        ink: {
+                            DEFAULT: '#1E1A16',
+                            muted: '#635b52',
+                            light: '#8c8276',
                         }
                     },
                     animation: {
                         'spin-slow': 'spin 18s linear infinite',
                         'float-slow': 'floatSlow 5s ease-in-out infinite',
-                        'pulse-glow': 'pulseGlow 3s ease-in-out infinite',
                     },
                     keyframes: {
                         floatSlow: {
                             '0%, 100%': { transform: 'translateY(0px)' },
                             '50%': { transform: 'translateY(-8px)' },
-                        },
-                        pulseGlow: {
-                            '0%, 100%': { opacity: '0.6', transform: 'scale(1)' },
-                            '50%': { opacity: '1', transform: 'scale(1.05)' },
                         }
                     }
                 }
@@ -71,38 +60,38 @@
     </script>
     <style>
         body {
-            background-color: #faf9f6;
-            color: #10141a;
+            background-color: #FAF7F2;
+            color: #1E1A16;
             font-feature-settings: "cv02", "cv03", "cv04", "cv11";
         }
-        
-        ::-webkit-scrollbar { width: 7px; }
-        ::-webkit-scrollbar-track { background: #faf9f6; }
-        ::-webkit-scrollbar-thumb { background: #d6d3d1; border-radius: 9999px; }
-        ::-webkit-scrollbar-thumb:hover { background: #a8a29e; }
+
+        ::-webkit-scrollbar {
+            width: 7px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #FAF7F2;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #e4d4be;
+            border-radius: 9999px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #B08D57;
+        }
 
         .glass-header {
-            background: rgba(250, 249, 246, 0.84);
+            background: rgba(255, 255, 255, 0.90);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
         }
 
-        .glass-card {
-            background: rgba(255, 255, 255, 0.88);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-        }
-
-        .glass-dark {
-            background: rgba(16, 20, 26, 0.88);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-        }
-
         .reveal {
             opacity: 0;
-            transform: translateY(32px);
-            transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translateY(24px);
+            transition: opacity 0.85s cubic-bezier(0.42, 0, 0.58, 1), transform 0.85s cubic-bezier(0.42, 0, 0.58, 1);
             will-change: opacity, transform;
         }
 
@@ -111,16 +100,18 @@
             transform: translateY(0);
         }
 
-        input[type=number]::-webkit-inner-spin-button, 
-        input[type=number]::-webkit-outer-spin-button { 
-            -webkit-appearance: none; margin: 0; 
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
         }
 
-        /* Editorial nav link: quiet underline that draws in on hover, no pill/box chrome */
+        /* Editorial nav link */
         .nav-link {
             position: relative;
             padding-bottom: 3px;
         }
+
         .nav-link::after {
             content: '';
             position: absolute;
@@ -128,1333 +119,999 @@
             right: 0;
             bottom: -3px;
             height: 1.5px;
-            background: linear-gradient(to right, #dfb958, #ab8124);
+            background: #B08D57;
             transform: scaleX(0);
             transform-origin: right;
             transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
+
         .nav-link:hover::after {
             transform: scaleX(1);
             transform-origin: left;
         }
+
+        /* WEDDING 3D FAN-OUT & HOVER "MENCAR" ANIMATION */
+        .wedding-gallery-container {
+            perspective: 1400px;
+        }
+
+        .wedding-fan {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            will-change: transform, box-shadow, z-index;
+            transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+                        box-shadow 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+                        border-color 0.4s ease,
+                        z-index 0.25s ease !important;
+        }
+
+        /* 1. Kondisi Normal: Kartu Menumpuk / Berdempetan Seperti Kipas */
+        .wedding-fan-left {
+            z-index: 10;
+            transform: translate(-50%, -50%) translateX(-80px) rotate(-6deg) scale(0.92);
+        }
+
+        .wedding-fan-center {
+            z-index: 20;
+            transform: translate(-50%, -50%) rotate(0deg) scale(1);
+        }
+
+        .wedding-fan-right {
+            z-index: 10;
+            transform: translate(-50%, -50%) translateX(80px) rotate(6deg) scale(0.92);
+        }
+
+        @media (min-width: 640px) {
+            .wedding-fan-left {
+                transform: translate(-50%, -50%) translateX(-130px) rotate(-7deg) scale(0.93);
+            }
+            .wedding-fan-right {
+                transform: translate(-50%, -50%) translateX(130px) rotate(7deg) scale(0.93);
+            }
+        }
+
+        /* 2. Kondisi Hover: 3 Kartu Mencar / Memisah Tanpa Berdempetan */
+        @media (min-width: 640px) {
+            .wedding-gallery-container:hover .wedding-fan-left {
+                z-index: 22;
+                transform: translate(-50%, -50%) translateX(-270px) rotate(-1deg) scale(0.97);
+                box-shadow: 0 25px 50px -12px rgba(30, 26, 22, 0.25);
+            }
+
+            .wedding-gallery-container:hover .wedding-fan-center {
+                z-index: 20;
+                transform: translate(-50%, -50%) translateY(-10px) rotate(0deg) scale(1.02);
+                box-shadow: 0 35px 60px -15px rgba(30, 26, 22, 0.3);
+            }
+
+            .wedding-gallery-container:hover .wedding-fan-right {
+                z-index: 22;
+                transform: translate(-50%, -50%) translateX(270px) rotate(1deg) scale(0.97);
+                box-shadow: 0 25px 50px -12px rgba(30, 26, 22, 0.25);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .wedding-gallery-container:hover .wedding-fan-left {
+                transform: translate(-50%, -50%) translateX(-390px) rotate(0deg) scale(1);
+            }
+
+            .wedding-gallery-container:hover .wedding-fan-center {
+                transform: translate(-50%, -50%) translateY(-14px) rotate(0deg) scale(1.03);
+            }
+
+            .wedding-gallery-container:hover .wedding-fan-right {
+                transform: translate(-50%, -50%) translateX(390px) rotate(0deg) scale(1);
+            }
+        }
+
+        /* 3. Hover Langsung ke Kartu Tertentu (Elevasi & Sorotan Emas) */
+        .wedding-gallery-container .wedding-fan-left:hover {
+            z-index: 40 !important;
+            border-color: #B08D57 !important;
+            box-shadow: 0 30px 65px -12px rgba(176, 141, 87, 0.4) !important;
+        }
+
+        @media (min-width: 640px) {
+            .wedding-gallery-container .wedding-fan-left:hover {
+                transform: translate(-50%, -50%) translateX(-270px) translateY(-16px) rotate(0deg) scale(1.05) !important;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .wedding-gallery-container .wedding-fan-left:hover {
+                transform: translate(-50%, -50%) translateX(-390px) translateY(-18px) rotate(0deg) scale(1.06) !important;
+            }
+        }
+
+        .wedding-gallery-container .wedding-fan-center:hover {
+            z-index: 40 !important;
+            transform: translate(-50%, -50%) translateY(-22px) rotate(0deg) scale(1.06) !important;
+            border-color: #B08D57 !important;
+            box-shadow: 0 40px 75px -15px rgba(176, 141, 87, 0.45) !important;
+        }
+
+        .wedding-gallery-container .wedding-fan-right:hover {
+            z-index: 40 !important;
+            border-color: #B08D57 !important;
+            box-shadow: 0 30px 65px -12px rgba(176, 141, 87, 0.4) !important;
+        }
+
+        @media (min-width: 640px) {
+            .wedding-gallery-container .wedding-fan-right:hover {
+                transform: translate(-50%, -50%) translateX(270px) translateY(-16px) rotate(0deg) scale(1.05) !important;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .wedding-gallery-container .wedding-fan-right:hover {
+                transform: translate(-50%, -50%) translateX(390px) translateY(-18px) rotate(0deg) scale(1.06) !important;
+            }
+        }
+
+        /* HERO 3D FAN STACK (SCROLL-DRIVEN "MENCAR" ANIMATION) */
+        #hero-fan-stack {
+            perspective: 1200px;
+        }
+
+        .hero-fan-card {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            will-change: transform, box-shadow;
+            transition: border-color 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .hero-fan-card-1 {
+            z-index: 10;
+        }
+
+        .hero-fan-card-2 {
+            z-index: 20;
+        }
+
+        .hero-fan-card-3 {
+            z-index: 10;
+        }
+
+        .hero-fan-card:hover {
+            z-index: 40 !important;
+            border-color: #B08D57 !important;
+            box-shadow: 0 30px 60px -10px rgba(176, 141, 87, 0.45) !important;
+        }
     </style>
 </head>
-<body class="selection:bg-obsidian-900 selection:text-white font-sans antialiased overflow-x-hidden"
-      x-data="biglandApp()">
 
-    <!-- Fixed Top Stack: Announcement Banner + Header (bungkus jadi satu supaya tidak saling menutupi) -->
-    <div class="fixed top-0 left-0 right-0 z-50" x-data="{ showNotice: true }">
+<body class="selection:bg-[#f5ede2] selection:text-[#1E1A16] font-sans antialiased overflow-x-hidden bg-[#FAF7F2]"
+    x-data="biglandApp()">
 
-        <!-- Top Announcement Strip (Minimalist Promo Banner) -->
-        <div x-show="showNotice" 
-             x-transition:leave="transition ease-in duration-200"
-             x-transition:leave-start="opacity-100 max-h-12"
-             x-transition:leave-end="opacity-0 max-h-0"
-             class="bg-obsidian-900 text-stone-300 text-[11px] py-2 px-6 flex items-center justify-between border-b border-obsidian-800 tracking-wide overflow-hidden">
-            <div class="max-w-7xl mx-auto flex items-center gap-2">
-                <span class="w-1.5 h-1.5 rounded-full bg-gold-400 animate-pulse"></span>
-                <span class="font-medium text-stone-200">Penawaran Eksklusif Bigland:</span>
-                <span>Dapatkan potongan 10% untuk reservasi minimal 3 malam secara otomatis.</span>
-            </div>
-            <button @click="showNotice = false" class="text-stone-400 hover:text-white transition-colors">
-                <i class="ph ph-x text-xs"></i>
-            </button>
-        </div>
+    <!-- FLOATING PILL NAVBAR COMPONENT -->
+    <x-navbar />
 
-        <!-- Glass Header -->
-        <header class="transition-all duration-300 glass-header border-b border-stone-200/70"
-                :class="{ 'shadow-sm py-3': scrolled, 'py-4 md:py-5': !scrolled }">
-        <div class="max-w-7xl mx-auto px-6 sm:px-8 flex justify-between items-center">
-            
-            <!-- Bigland Brand Monogram Logo -->
-            <a href="/" class="flex items-center gap-3 group">
-                <div class="w-10 h-10 rounded-2xl bg-obsidian-900 text-white flex items-center justify-center font-bold shadow-md group-hover:scale-105 group-hover:bg-black transition-all duration-300">
-                    <i class="ph-fill ph-buildings text-xl text-gold-400"></i>
-                </div>
-                <div class="flex flex-col">
-                    <span class="text-xl font-bold tracking-tight text-obsidian-900 group-hover:text-gold-600 transition-colors">
-                        Bigland
-                    </span>
-                    <span class="text-[9px] tracking-[0.25em] uppercase font-bold text-stone-400 -mt-1">
-                        Hotel & Suites
-                    </span>
-                </div>
-            </a>
+    <!-- HERO: Scroll-driven (pinned via GSAP) -->
+    <section id="hero" class="relative h-screen bg-[#FAF7F2] overflow-hidden">
+        <div class="absolute inset-0 pt-[96px] sm:pt-[104px] px-3 sm:px-6 pb-3 sm:pb-6">
+            <div class="relative h-full rounded-[2rem] sm:rounded-[2.75rem] overflow-hidden bg-[#1E1A16] border border-[#e4d4be]/60 shadow-xl">
 
-            <!-- Desktop Editorial Navigation (flat links, gold underline on hover) -->
-            <nav class="hidden lg:flex items-center gap-9">
-                <a href="#kamar" class="nav-link text-xs font-semibold text-stone-600 hover:text-obsidian-900 transition-colors">
-                    Koleksi Kamar
-                </a>
-                <a href="#bento-fasilitas" class="nav-link text-xs font-semibold text-stone-600 hover:text-obsidian-900 transition-colors">
-                    Pengalaman
-                </a>
-                <a href="#kalkulator" class="nav-link text-xs font-semibold text-stone-600 hover:text-obsidian-900 transition-colors">
-                    Estimasi Biaya
-                </a>
-                <a href="#harga" class="nav-link text-xs font-semibold text-stone-600 hover:text-obsidian-900 transition-colors">
-                    Tarif
-                </a>
-                <a href="#lokasi" class="nav-link text-xs font-semibold text-stone-600 hover:text-obsidian-900 transition-colors">
-                    Lokasi
-                </a>
-                <a href="#ulasan" class="nav-link text-xs font-semibold text-stone-600 hover:text-obsidian-900 transition-colors">
-                    Ulasan
-                </a>
-                <a href="#faq" class="nav-link text-xs font-semibold text-stone-600 hover:text-obsidian-900 transition-colors">
-                    FAQ
-                </a>
-            </nav>
+                <!-- Hero Background Image (Warm luxury interior) -->
+                <img id="hero-bg"
+                    src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?q=80&w=2000&auto=format&fit=crop"
+                    alt="Bigland Modern Luxury Hotel"
+                    class="absolute inset-0 w-full h-full object-cover filter brightness-[0.92]">
+                
+                <!-- Dark cinematic vignette on photo so white serif text stands out crisp & sharp -->
+                <div class="absolute inset-0 bg-gradient-to-r from-[#1E1A16]/80 via-[#1E1A16]/40 to-transparent"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-[#1E1A16]/85 via-transparent to-black/30"></div>
 
-            <!-- Right Controls: Auth & Reservation CTA -->
-            <div class="flex items-center gap-3">
-                @guest
-                    <a href="{{ route('login') }}" class="hidden sm:inline-flex text-xs font-semibold text-stone-700 hover:text-obsidian-900 px-3.5 py-2 rounded-full hover:bg-stone-200/50 transition-colors">
-                        Masuk
-                    </a>
-                    @if (Route::has('register'))
-                        <a href="{{ route('register') }}" class="hidden md:inline-flex text-xs font-semibold text-stone-700 hover:text-obsidian-900 px-3.5 py-2 rounded-full hover:bg-stone-200/50 transition-colors">
-                            Daftar
+                <!-- Editorial Headline (Left): Serif besar berwarna putih di atas foto -->
+                <div class="absolute left-6 sm:left-12 lg:left-16 top-8 sm:top-12 lg:top-16 z-10 max-w-xl">
+                    <h1 class="font-serif text-white tracking-tight leading-[1.03] text-[clamp(2.8rem,7vw,5.8rem)] drop-shadow-md">
+                        <span class="hl block font-normal">Find Your</span>
+                        <span class="hl block font-normal italic text-white/95">Perfect Stay.</span>
+                    </h1>
+                    <p id="hero-sub" class="mt-4 sm:mt-5 max-w-sm text-xs sm:text-sm text-white/85 leading-relaxed font-normal">
+                        Book boutique hotels, private villas, oceanfront penthouses & curated experiences. Tailored for those who travel with taste.
+                    </p>
+                    <div id="hero-hint" class="mt-6 flex items-center gap-4">
+                        <!-- Tombol Sekunder Emas #B08D57 -->
+                        <a href="{{ route('form.pesan') }}"
+                            class="group inline-flex items-center gap-2 bg-[#B08D57] hover:bg-[#9c7743] text-white px-6 py-3 rounded-full text-xs font-semibold shadow-lg shadow-black/25 transition-all hover:scale-105">
+                            <span>Booking Now</span>
+                            <i class="ph ph-arrow-right group-hover:translate-x-1 transition-transform"></i>
                         </a>
-                    @endif
-                @else
-                    <!-- Authenticated Dropdown -->
-                    <div class="relative" x-data="{ open: false }">
-                        <button @click="open = !open" 
-                                @click.away="open = false" 
-                                class="flex items-center gap-2 text-xs font-semibold text-obsidian-900 bg-white px-3.5 py-2 rounded-full border border-stone-200 shadow-sm hover:border-stone-400 transition-all">
-                            <span class="w-6 h-6 rounded-full bg-stone-100 text-obsidian-900 flex items-center justify-center font-bold text-[11px]">
-                                {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
-                            </span>
-                            <span class="max-w-[100px] truncate">{{ Auth::user()->name }}</span>
-                            <i class="ph ph-caret-down text-stone-400 text-xs transition-transform duration-200" :class="{ 'rotate-180': open }"></i>
-                        </button>
-                        
-                        <div x-show="open" 
-                             x-transition:enter="transition ease-out duration-150"
-                             x-transition:enter-start="opacity-0 scale-95 -translate-y-2"
-                             x-transition:enter-end="opacity-100 scale-100 translate-y-0"
-                             x-transition:leave="transition ease-in duration-100"
-                             x-transition:leave-start="opacity-100 scale-100 translate-y-0"
-                             x-transition:leave-end="opacity-0 scale-95 -translate-y-2"
-                             class="absolute right-0 mt-2 w-56 bg-white border border-stone-200 rounded-2xl shadow-xl py-2 z-50"
-                             style="display: none;">
-                            <div class="px-4 py-2 border-b border-stone-100 mb-1">
-                                <p class="text-[10px] text-stone-400 uppercase font-bold">Akun Terdaftar</p>
-                                <p class="text-xs font-bold text-obsidian-900 truncate">{{ Auth::user()->email }}</p>
-                            </div>
-                            <a href="{{ route('dashboard') }}" class="px-4 py-2 text-xs text-stone-700 hover:bg-stone-50 flex items-center gap-2.5 transition-colors font-semibold">
-                                <i class="ph ph-squares-four text-base text-stone-500"></i> Dashboard Pengguna
-                            </a>
-                            <a href="{{ route('riwayat') }}" class="px-4 py-2 text-xs text-stone-700 hover:bg-stone-50 flex items-center gap-2.5 transition-colors">
-                                <i class="ph ph-receipt text-base text-stone-500"></i> Riwayat Reservasiku
-                            </a>
-                            <a href="{{ route('form.pesan') }}" class="px-4 py-2 text-xs text-stone-700 hover:bg-stone-50 flex items-center gap-2.5 transition-colors">
-                                <i class="ph ph-plus-circle text-base text-stone-500"></i> Buat Pesanan Baru
-                            </a>
-                            <div class="border-t border-stone-100 my-1"></div>
-                            <form method="POST" action="{{ route('logout') }}">
-                                @csrf
-                                <button type="submit" class="w-full text-left px-4 py-2 text-xs text-red-600 hover:bg-red-50 flex items-center gap-2.5 transition-colors font-medium">
-                                    <i class="ph ph-sign-out text-base"></i> Keluar
-                                </button>
-                            </form>
-                        </div>
                     </div>
-                @endguest
-
-                <!-- Primary CTA Button with Magnetic Pulse -->
-                <a href="{{ route('form.pesan') }}" class="relative group inline-flex items-center gap-2 bg-obsidian-900 hover:bg-black text-white px-5 py-2.5 rounded-full text-xs font-semibold transition-all duration-300 shadow-sm hover:shadow-md hover:scale-[1.03] active:scale-95">
-                    <span>Pesan Kamar</span>
-                    <i class="ph ph-arrow-up-right group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
-                </a>
-
-                <!-- Mobile Hamburger Toggle -->
-                <button @click="mobileMenuOpen = !mobileMenuOpen" class="lg:hidden p-2 text-stone-700 hover:text-obsidian-900 focus:outline-none">
-                    <i class="ph ph-list text-2xl" x-show="!mobileMenuOpen"></i>
-                    <i class="ph ph-x text-2xl" x-show="mobileMenuOpen" style="display: none;"></i>
-                </button>
-            </div>
-        </div>
-
-        <!-- Mobile Drawer -->
-        <div x-show="mobileMenuOpen" 
-             x-transition:enter="transition ease-out duration-200"
-             x-transition:enter-start="opacity-0 -translate-y-4"
-             x-transition:enter-end="opacity-100 translate-y-0"
-             x-transition:leave="transition ease-in duration-150"
-             x-transition:leave-start="opacity-100 translate-y-0"
-             x-transition:leave-end="opacity-0 -translate-y-4"
-             class="lg:hidden bg-white border-b border-stone-200 px-6 py-5 shadow-xl"
-             style="display: none;">
-            <div class="flex flex-col space-y-3">
-                <a @click="mobileMenuOpen = false" href="#kamar" class="py-2 text-sm font-medium text-stone-700 hover:text-obsidian-900 border-b border-stone-100">Koleksi Kamar</a>
-                <a @click="mobileMenuOpen = false" href="#bento-fasilitas" class="py-2 text-sm font-medium text-stone-700 hover:text-obsidian-900 border-b border-stone-100">Pengalaman & Fasilitas</a>
-                <a @click="mobileMenuOpen = false" href="#kalkulator" class="py-2 text-sm font-medium text-stone-700 hover:text-obsidian-900 border-b border-stone-100">Kalkulator Estimasi</a>
-                <a @click="mobileMenuOpen = false" href="#harga" class="py-2 text-sm font-medium text-stone-700 hover:text-obsidian-900 border-b border-stone-100">Daftar Tarif</a>
-                <a @click="mobileMenuOpen = false" href="#lokasi" class="py-2 text-sm font-medium text-stone-700 hover:text-obsidian-900 border-b border-stone-100">Lokasi & Peta</a>
-                <a @click="mobileMenuOpen = false" href="#ulasan" class="py-2 text-sm font-medium text-stone-700 hover:text-obsidian-900 border-b border-stone-100">Ulasan Tamu</a>
-                <a @click="mobileMenuOpen = false" href="#faq" class="py-2 text-sm font-medium text-stone-700 hover:text-obsidian-900 border-b border-stone-100">FAQ</a>
-                @guest
-                    <div class="pt-2 flex gap-3">
-                        <a href="{{ route('login') }}" class="flex-1 text-center py-2.5 rounded-full border border-stone-300 text-xs font-semibold text-stone-700">Masuk</a>
-                        <a href="{{ route('register') }}" class="flex-1 text-center py-2.5 rounded-full bg-stone-100 text-xs font-semibold text-obsidian-900">Daftar</a>
-                    </div>
-                @endguest
-            </div>
-        </div>
-        </header>
-    </div>
-
-    <!-- NEW HERO: Asymmetric Editorial Split Layout with Dynamic Visual Showcase -->
-    <section class="relative pt-32 sm:pt-40 pb-20 px-6 sm:px-8 max-w-7xl mx-auto">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-12">
-            
-            <!-- Left Editorial Text Column -->
-            <div class="lg:col-span-6 space-y-6 reveal">
-                <!-- Status Badge -->
-                <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white border border-stone-200 text-stone-700 text-xs font-semibold shadow-sm">
-                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
-                    <span class="text-obsidian-900 font-bold">Kamar Tersedia</span>
-                    <span class="text-stone-300">•</span>
-                    <span class="text-stone-500">Jakarta Pusat CBD</span>
                 </div>
+            </div>
+        </div>
+    </section>
 
-                <!-- Main Editorial Headline -->
-                <h1 class="text-4xl sm:text-6xl md:text-[4rem] font-extrabold tracking-tight text-obsidian-900 leading-[1.08]">
-                    Kemewahan <br>
-                    <span class="text-stone-500 font-extrabold">Kontemporer</span> <br>
-                    di Pusat Kota.
-                </h1>
-
-                <!-- Subtitle -->
-                <p class="text-sm sm:text-base text-stone-500 leading-relaxed max-w-lg font-normal">
-                    Selamat datang di <strong class="text-obsidian-900 font-semibold">Bigland</strong>. Menghadirkan keseimbangan sempurna antara kesederhanaan estetika modern, privasi istirahat tanpa gangguan, dan keramahan personal kelas dunia.
+    <!-- SECTION: ABOUT BIGLAND (Teks Serif Cokelat Gelap #1E1A16 & Sorotan Emas #B08D57) -->
+    <section id="about" class="py-20 sm:py-28 px-6 sm:px-10 max-w-7xl mx-auto overflow-hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+            
+            <!-- Left Column: Editorial Heading & Serif Paragraph & Dotted Trail -->
+            <div id="about-info" class="lg:col-span-5">
+                <h2 class="font-serif text-4xl sm:text-5xl font-normal text-[#1E1A16] tracking-tight leading-[1.15]">
+                    About Us
+                </h2>
+                
+                <!-- Teks panjang Bahasa Indonesia: paragraf berwarna cokelat gelap #1E1A16, kata Selamat Datang di Bigland disorot emas #B08D57 -->
+                <p class="mt-6 font-serif text-sm sm:text-base text-[#1E1A16] leading-relaxed font-normal">
+                    <span class="font-medium text-[#B08D57]">Selamat Datang di Bigland </span>Selamat datang di Bigland. Kami tahu menginap itu bukan cuma soal tempat tidur, tapi soal merasa diterima. Makanya kami siapkan kamar yang nyaman, makanan yang enak, dan tim yang selalu siap membantu, siang maupun malam. Silakan pilih kamarnya, sisanya biar kami yang urus.
                 </p>
 
-                <!-- Micro-Action & Trust Badges -->
-                <div class="pt-2 flex flex-wrap items-center gap-6">
-                    <div class="flex items-center gap-2">
-                        <div class="w-10 h-10 rounded-2xl bg-amber-50 text-amber-600 border border-amber-200 flex items-center justify-center font-bold text-lg">
-                            <i class="ph-fill ph-star"></i>
-                        </div>
-                        <div>
-                            <div class="text-sm font-extrabold text-obsidian-900">4.9 / 5.0 Rating</div>
-                            <div class="text-[11px] text-stone-400">1,240+ Tamu Terverifikasi</div>
-                        </div>
-                    </div>
+                <!-- Tombol Sekunder Outline Hitam Tipis #1E1A16 -->
+                <div class="mt-6">
+                    <a href="{{ route('tentang-kami') }}"
+                        class="inline-flex items-center gap-2 border border-[#1E1A16] text-[#1E1A16] hover:bg-[#1E1A16] hover:text-white px-6 py-2.5 rounded-full text-xs font-semibold transition-all hover:scale-105 shadow-sm">
+                        <span>Pelajari Lebih Lanjut</span>
+                        <i class="ph ph-arrow-right"></i>
+                    </a>
+                </div>
 
-                    <div class="h-8 w-px bg-stone-200 hidden sm:block"></div>
-
-                    <div class="flex items-center gap-2">
-                        <div class="w-10 h-10 rounded-2xl bg-stone-100 text-obsidian-900 border border-stone-200 flex items-center justify-center font-bold text-lg">
-                            <i class="ph-fill ph-shield-check"></i>
+                <!-- Dotted Trail Graphic with Animated Beach Umbrella -->
+                <div id="about-trail" class="relative mt-10 h-24 max-w-xs pointer-events-none select-none">
+                    <svg class="w-full h-full" viewBox="0 0 280 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 20 C 50 15, 60 70, 120 70 C 180 70, 200 25, 250 55" stroke="#B08D57" stroke-width="2" stroke-dasharray="5 5" stroke-linecap="round"/>
+                    </svg>
+                    <div id="about-umbrella" class="absolute right-3 bottom-1 flex flex-col items-center">
+                        <div class="w-8 h-8 rounded-full bg-[#f5ede2] border border-[#e4d4be] flex items-center justify-center text-[#B08D57] shadow-sm animate-bounce" style="animation-duration: 3s;">
+                            <i class="ph-fill ph-umbrella text-base"></i>
                         </div>
-                        <div>
-                            <div class="text-sm font-extrabold text-obsidian-900">Official Certified</div>
-                            <div class="text-[11px] text-stone-400">Clean & Safe Luxury Stay</div>
-                        </div>
+                        <div class="w-6 h-1 bg-[#e4d4be] rounded-full mt-1"></div>
                     </div>
                 </div>
             </div>
 
-            <!-- Right Visual Column: Dynamic Interactive Showcase Card Stack -->
-            <div class="lg:col-span-6 relative reveal">
-                <div class="absolute -inset-4 bg-gradient-to-tr from-amber-100/60 via-stone-200/40 to-transparent rounded-[3rem] blur-2xl -z-10 pointer-events-none"></div>
+            <!-- Right Column: 3 Portrait Rounded Cards with Parallax & 3D Tilt -->
+            <div id="about-cards" class="lg:col-span-7 grid grid-cols-3 gap-3 sm:gap-4 items-center">
+                <!-- Card 1: Dining Bistro Setup -->
+                <div class="about-card about-card-1 tilt-card aspect-[3/5] rounded-2xl sm:rounded-[2rem] overflow-hidden shadow-lg border border-[#e4d4be] group transition-all duration-500 hover:shadow-2xl">
+                    <img src="https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?q=80&w=800&auto=format&fit=crop"
+                        alt="Bigland Dining" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                </div>
 
-                <div class="relative rounded-[2.5rem] overflow-hidden shadow-2xl border border-stone-200/90 h-[420px] sm:h-[480px] group bg-stone-900">
-                    
-                    <template x-for="(img, idx) in heroSlides" :key="idx">
-                        <img :src="img.url" 
-                             :alt="img.caption"
-                             x-show="currentHeroSlide === idx"
-                             x-transition:enter="transition ease-out duration-700"
-                             x-transition:enter-start="opacity-0 scale-105"
-                             x-transition:enter-end="opacity-100 scale-100"
-                             x-transition:leave="transition ease-in duration-700"
-                             x-transition:leave-start="opacity-100 scale-100"
-                             x-transition:leave-end="opacity-0 scale-95"
-                             class="absolute inset-0 w-full h-full object-cover">
-                    </template>
-                    
-                    <div class="absolute inset-0 bg-gradient-to-t from-obsidian-950/80 via-obsidian-950/20 to-transparent"></div>
+                <!-- Card 2: Couple / Window Curtain Ocean View -->
+                <div class="about-card about-card-2 tilt-card aspect-[3/5] rounded-2xl sm:rounded-[2rem] overflow-hidden shadow-xl border border-[#e4d4be] -translate-y-4 sm:-translate-y-6 group transition-all duration-500 hover:shadow-2xl">
+                    <img src="https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?q=80&w=800&auto=format&fit=crop"
+                        alt="Serene Experience" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                </div>
 
-                    <!-- Slide Controller Badges -->
-                    <div class="absolute top-6 right-6 flex items-center gap-1.5 bg-obsidian-950/70 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/20 z-20">
-                        <template x-for="(s, i) in heroSlides" :key="i">
-                            <button @click="currentHeroSlide = i" 
-                                    class="w-2 h-2 rounded-full transition-all"
-                                    :class="currentHeroSlide === i ? 'w-5 bg-white' : 'bg-white/40'"></button>
-                        </template>
-                    </div>
-
-                    <!-- Top Left Weather Pill -->
-                    <div class="absolute top-6 left-6 glass-card px-4 py-2 rounded-2xl border border-white/50 text-obsidian-900 text-xs font-semibold shadow-md flex items-center gap-2 z-20">
-                        <i class="ph-fill ph-sun text-amber-500 text-base"></i>
-                        <span>Jakarta CBD • 28°C</span>
-                    </div>
-
-                    <!-- Bottom Floating Caption Card -->
-                    <div class="absolute bottom-6 left-6 right-6 glass-dark p-5 rounded-[2rem] border border-white/20 text-white z-20 flex items-center justify-between gap-4">
-                        <div>
-                            <span class="text-[10px] tracking-widest uppercase font-bold text-gold-400 block mb-0.5" x-text="heroSlides[currentHeroSlide].tag"></span>
-                            <h4 class="text-sm sm:text-base font-bold text-white" x-text="heroSlides[currentHeroSlide].caption"></h4>
-                        </div>
-                        <a href="#kamar" class="w-10 h-10 rounded-full bg-white text-obsidian-900 flex items-center justify-center text-base font-bold hover:scale-110 transition-transform shadow-md shrink-0">
-                            <i class="ph ph-arrow-down"></i>
-                        </a>
-                    </div>
-
-                    <!-- Circular Rotating Brand Stamp Badge -->
-                    <div class="absolute -bottom-6 -right-6 hidden sm:flex w-24 h-24 rounded-full bg-obsidian-900 border-4 border-[#faf9f6] text-white items-center justify-center shadow-xl animate-spin-slow z-30 pointer-events-none">
-                        <svg class="w-20 h-20 fill-current text-stone-300 text-[8px] font-bold tracking-widest" viewBox="0 0 100 100">
-                            <path id="textPath" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="transparent" />
-                            <text>
-                                <textPath href="#textPath" startOffset="0%">• BIGLAND HOTEL • JAKARTA LUXURY STAY </textPath>
-                            </text>
-                        </svg>
-                    </div>
+                <!-- Card 3: Resort Relaxation / Suite Balcony -->
+                <div class="about-card about-card-3 tilt-card aspect-[3/5] rounded-2xl sm:rounded-[2rem] overflow-hidden shadow-lg border border-[#e4d4be] group transition-all duration-500 hover:shadow-2xl">
+                    <img src="https://images.unsplash.com/photo-1540541338287-41700207dee6?q=80&w=800&auto=format&fit=crop"
+                        alt="Bigland Resort" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
                 </div>
             </div>
-        </div>
 
-        <!-- NEW QUICK BOOKING ISLAND -->
-        <div class="relative max-w-5xl mx-auto z-20 reveal">
-            <div class="bg-white rounded-[2.2rem] p-4 sm:p-5 shadow-2xl border border-stone-200/90">
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 items-center">
-                    
-                    <!-- 1. Check-in Date -->
-                    <div class="px-4 py-2.5 rounded-2xl bg-stone-50 border border-stone-200/80 hover:border-obsidian-900 transition-colors">
-                        <span class="block text-[10px] font-bold uppercase tracking-wider text-stone-400">Tanggal Check-in</span>
-                        <input type="date" 
-                               x-model="quickBooking.checkin" 
-                               class="w-full bg-transparent text-xs font-bold text-obsidian-900 outline-none cursor-pointer pt-0.5">
-                    </div>
-
-                    <!-- 2. Room Selector -->
-                    <div class="px-4 py-2.5 rounded-2xl bg-stone-50 border border-stone-200/80 hover:border-obsidian-900 transition-colors">
-                        <span class="block text-[10px] font-bold uppercase tracking-wider text-stone-400">Tipe Kamar</span>
-                        <select x-model="quickBooking.tipe" class="w-full bg-transparent text-xs font-bold text-obsidian-900 outline-none cursor-pointer pt-0.5">
-                            <option value="Standar">Standar Room (Rp 500k)</option>
-                            <option value="Deluxe">Deluxe Room (Rp 800k)</option>
-                            <option value="Executif">Executif Suite (Rp 1.2M)</option>
-                        </select>
-                    </div>
-
-                    <!-- 3. Duration Selector -->
-                    <div class="px-4 py-2.5 rounded-2xl bg-stone-50 border border-stone-200/80 hover:border-obsidian-900 transition-colors">
-                        <span class="block text-[10px] font-bold uppercase tracking-wider text-stone-400">Durasi Menginap</span>
-                        <div class="flex items-center justify-between pt-0.5">
-                            <button type="button" @click="if (quickBooking.durasi > 1) quickBooking.durasi--" class="w-5 h-5 rounded-full bg-white border border-stone-300 text-stone-700 flex items-center justify-center text-xs hover:bg-stone-200 font-bold">-</button>
-                            <span class="text-xs font-extrabold text-obsidian-900" x-text="quickBooking.durasi + ' Malam'"></span>
-                            <button type="button" @click="quickBooking.durasi++" class="w-5 h-5 rounded-full bg-white border border-stone-300 text-stone-700 flex items-center justify-center text-xs hover:bg-stone-200 font-bold">+</button>
-                        </div>
-                    </div>
-
-                    <!-- 4. Submit CTA -->
-                    <button type="button" 
-                            @click="submitQuickBooking()"
-                            class="w-full bg-obsidian-900 hover:bg-black text-white font-bold text-xs py-4 px-6 rounded-2xl transition-all shadow-md hover:shadow-xl hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-2">
-                        <i class="ph ph-calendar-check text-base"></i>
-                        <span>Cek & Reservasi</span>
-                    </button>
-                </div>
-            </div>
         </div>
     </section>
 
-    <!-- NEW SECTION: Bento Grid Layout (Fasilitas & Pengalaman Tamu) -->
-    <section id="bento-fasilitas" class="py-16 sm:py-24 px-6 sm:px-8 max-w-7xl mx-auto">
-        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 reveal">
-            <div>
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-stone-200/70 text-obsidian-900 text-xs font-semibold mb-3">
-                    <i class="ph-fill ph-sparkle text-gold-500"></i> Pengalaman Eksklusif
-                </div>
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-obsidian-900 tracking-tight">
-                    Fasilitas Berkelas Dunia di Bigland
-                </h2>
-            </div>
-            <p class="text-stone-500 max-w-md text-xs sm:text-sm leading-relaxed">
-                Setiap detail dirancang dengan presisi untuk memenuhi kebutuhan istirahat, relaksasi, serta produktivitas Anda.
-            </p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
-            
-            <!-- Bento 1: Large Featured Item (Sky Infinity Pool) -->
-            <div class="md:col-span-8 relative rounded-[2.5rem] overflow-hidden h-[340px] sm:h-[400px] group border border-stone-200/80 shadow-md reveal">
-                <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?q=80&w=1200&auto=format&fit=crop" 
-                     alt="Bigland Sky Pool" 
-                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 ease-out">
-                <div class="absolute inset-0 bg-gradient-to-t from-obsidian-950/85 via-obsidian-950/30 to-transparent"></div>
+    <!-- SECTION: PARTNER BRAND STRIP (Band Section Karamel/Emas Kecokelatan #B08D57) -->
+    <section id="partner-strip" class="px-6 sm:px-10 max-w-7xl mx-auto mb-20 sm:mb-28">
+        <div class="bg-[#B08D57] rounded-[2rem] sm:rounded-full py-8 px-8 sm:px-14 shadow-xl text-white">
+            <div class="flex flex-wrap items-center justify-between gap-8 sm:gap-6 opacity-95">
                 
-                <div class="absolute top-6 left-6">
-                    <span class="px-3 py-1.5 rounded-full bg-white/90 backdrop-blur-md text-[11px] font-bold text-obsidian-900 shadow-sm">
-                        Lantai 22 Rooftop
-                    </span>
-                </div>
-
-                <div class="absolute bottom-6 left-6 right-6 text-white max-w-lg">
-                    <span class="text-xs uppercase font-bold tracking-widest text-gold-400">Pemandangan Kota 360°</span>
-                    <h3 class="text-2xl font-bold text-white mt-1 mb-2">Infinity Sky Pool & Sun Deck</h3>
-                    <p class="text-xs text-stone-300 leading-relaxed hidden sm:block">
-                        Berenang di atas ketinggian sambil menikmati panorama matahari terbenam spektakuler di langit metropolitan Jakarta.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Bento 2: Tall Vertical Item (The Bigland Bistro) -->
-            <div class="md:col-span-4 relative rounded-[2.5rem] overflow-hidden h-[340px] sm:h-[400px] group border border-stone-200/80 shadow-md reveal">
-                <img src="https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?q=80&w=800&auto=format&fit=crop" 
-                     alt="Bigland Bistro Dining" 
-                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 ease-out">
-                <div class="absolute inset-0 bg-gradient-to-t from-obsidian-950/85 via-obsidian-950/30 to-transparent"></div>
-
-                <div class="absolute top-6 left-6">
-                    <span class="px-3 py-1.5 rounded-full bg-white/90 backdrop-blur-md text-[11px] font-bold text-obsidian-900 shadow-sm">
-                        Artisan Gastronomi
-                    </span>
-                </div>
-
-                <div class="absolute bottom-6 left-6 right-6 text-white">
-                    <h3 class="text-xl font-bold text-white mb-1">The Bigland Bistro</h3>
-                    <p class="text-xs text-stone-300 leading-relaxed">
-                        Sajian kuliner internasional dan Nusantara dipersiapkan oleh master chef berpengalaman.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Bento 3: Wellness Studio -->
-            <div class="md:col-span-4 relative rounded-[2.5rem] overflow-hidden h-[300px] group border border-stone-200/80 shadow-md reveal">
-                <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=800&auto=format&fit=crop" 
-                     alt="Technogym Fitness" 
-                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 ease-out">
-                <div class="absolute inset-0 bg-gradient-to-t from-obsidian-950/85 via-obsidian-950/30 to-transparent"></div>
-
-                <div class="absolute bottom-6 left-6 right-6 text-white">
-                    <div class="w-9 h-9 rounded-xl bg-white/20 backdrop-blur-sm text-white flex items-center justify-center text-lg mb-2">
-                        <i class="ph ph-barbell"></i>
+                <!-- Brand 1: Sunset Resort -->
+                <div class="partner-logo flex items-center gap-2 transition-transform duration-300 hover:-translate-y-1 hover:brightness-110">
+                    <i class="ph-fill ph-palm-tree text-2xl"></i>
+                    <div class="leading-none">
+                        <span class="block text-sm font-extrabold tracking-wider uppercase">SUNSET</span>
+                        <span class="block text-[9px] tracking-widest uppercase opacity-85">RESORT & VILLAS</span>
                     </div>
-                    <h3 class="text-lg font-bold text-white mb-1">Wellness & Technogym</h3>
-                    <p class="text-xs text-stone-300">Peralatan kebugaran modern lengkap dengan ruang sauna.</p>
                 </div>
-            </div>
 
-            <!-- Bento 4: Executive Sky Lounge -->
-            <div class="md:col-span-4 bg-obsidian-900 text-white p-7 rounded-[2.5rem] border border-obsidian-800 shadow-md flex flex-col justify-between reveal">
-                <div>
-                    <div class="w-12 h-12 rounded-2xl bg-obsidian-800 text-gold-400 flex items-center justify-center text-2xl mb-4 border border-obsidian-700">
-                        <i class="ph-fill ph-crown"></i>
+                <!-- Brand 2: TravelWorld -->
+                <div class="partner-logo flex items-center gap-1.5 transition-transform duration-300 hover:-translate-y-1 hover:brightness-110">
+                    <i class="ph-fill ph-globe-hemisphere-west text-2xl"></i>
+                    <span class="text-base font-extrabold tracking-tight uppercase">TRAVELWORLD</span>
+                </div>
+
+                <!-- Brand 3: Travel & Hotel -->
+                <div class="partner-logo flex items-center gap-2 transition-transform duration-300 hover:-translate-y-1 hover:brightness-110">
+                    <div class="w-6 h-6 border-2 border-white rounded-md flex items-center justify-center font-serif font-bold text-xs">M</div>
+                    <span class="text-xs font-bold tracking-widest uppercase">TRAVEL & HOTEL</span>
+                </div>
+
+                <!-- Brand 4: Airbnb Partner -->
+                <div class="partner-logo flex items-center gap-2 transition-transform duration-300 hover:-translate-y-1 hover:brightness-110">
+                    <i class="ph-fill ph-house-line text-2xl"></i>
+                    <span class="text-base font-bold lowercase tracking-tight">airbnb</span>
+                </div>
+
+                <!-- Brand 5: Five Star Alliance -->
+                <div class="partner-logo flex items-center gap-2 transition-transform duration-300 hover:-translate-y-1 hover:brightness-110">
+                    <i class="ph-fill ph-crown text-2xl"></i>
+                    <div class="leading-none">
+                        <span class="block text-xs font-extrabold tracking-widest uppercase">FIVE STAR</span>
+                        <span class="block text-[8px] tracking-widest uppercase opacity-85">ALLIANCE</span>
                     </div>
-                    <span class="text-[10px] uppercase font-bold tracking-widest text-gold-400">Akses Eksklusif</span>
-                    <h3 class="text-xl font-bold text-white mt-1 mb-2">Executive Sky Lounge</h3>
-                    <p class="text-xs text-stone-400 leading-relaxed">
-                        Lounge privat untuk pertemuan santai, teh sore hari, dan koktail petang istimewa tamu suite.
-                    </p>
                 </div>
-                <div class="pt-4 border-t border-obsidian-800 flex items-center justify-between text-xs text-stone-300">
-                    <span>Akses 24 Jam</span>
-                    <i class="ph ph-arrow-right text-gold-400"></i>
-                </div>
+
             </div>
-
-            <!-- Bento 5: Grand Ballroom -->
-            <div class="md:col-span-4 relative rounded-[2.5rem] overflow-hidden h-[300px] group border border-stone-200/80 shadow-md reveal">
-                <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=800&auto=format&fit=crop" 
-                     alt="Grand Ballroom" 
-                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 ease-out">
-                <div class="absolute inset-0 bg-gradient-to-t from-obsidian-950/85 via-obsidian-950/30 to-transparent"></div>
-
-                <div class="absolute bottom-6 left-6 right-6 text-white">
-                    <div class="w-9 h-9 rounded-xl bg-white/20 backdrop-blur-sm text-white flex items-center justify-center text-lg mb-2">
-                        <i class="ph ph-presentation-chart"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-white mb-1">Meeting & Grand Ballroom</h3>
-                    <p class="text-xs text-stone-300">Kapasitas hingga 500 tamu untuk konferensi dan resepsi.</p>
-                </div>
-            </div>
-
         </div>
     </section>
 
-    <!-- NEW SECTION: Koleksi Kamar dengan Mini-Carousel & Filter Interaktif -->
-    <section id="kamar" class="py-16 sm:py-24 px-6 sm:px-8 max-w-7xl mx-auto">
-        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 reveal">
-            <div>
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-stone-200/70 text-obsidian-900 text-xs font-semibold mb-3">
-                    <i class="ph-fill ph-bed"></i> Pilihan Akomodasi
-                </div>
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-obsidian-900 tracking-tight">
-                    Koleksi Kamar & Suite Bigland
-                </h2>
-            </div>
+    <!-- SECTION: RELAX. REFRESH. REJUVENATE. (3 Tall Vertical Cards with Dynamic Focus) -->
+    <section id="pengalaman" class="py-16 sm:py-24 px-6 sm:px-10 max-w-7xl mx-auto overflow-hidden">
+        <div id="exp-container" class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 items-stretch group/exp">
             
-            <div class="flex flex-wrap items-center gap-2 bg-stone-100 p-1.5 rounded-full border border-stone-200/80 self-start md:self-auto">
-                <button @click="activeFilter = 'all'" 
-                        :class="{ 'bg-white text-obsidian-900 shadow-sm': activeFilter === 'all', 'text-stone-500 hover:text-obsidian-900': activeFilter !== 'all' }"
-                        class="px-4 py-2 rounded-full text-xs font-bold transition-all">
-                    Semua Kamar (3)
-                </button>
-                <button @click="activeFilter = 'Standar'" 
-                        :class="{ 'bg-white text-obsidian-900 shadow-sm': activeFilter === 'Standar', 'text-stone-500 hover:text-obsidian-900': activeFilter !== 'Standar' }"
-                        class="px-4 py-2 rounded-full text-xs font-bold transition-all">
-                    Standar
-                </button>
-                <button @click="activeFilter = 'Deluxe'" 
-                        :class="{ 'bg-white text-obsidian-900 shadow-sm': activeFilter === 'Deluxe', 'text-stone-500 hover:text-obsidian-900': activeFilter !== 'Deluxe' }"
-                        class="px-4 py-2 rounded-full text-xs font-bold transition-all">
-                    Deluxe
-                </button>
-                <button @click="activeFilter = 'Executif'" 
-                        :class="{ 'bg-white text-obsidian-900 shadow-sm': activeFilter === 'Executif', 'text-stone-500 hover:text-obsidian-900': activeFilter !== 'Executif' }"
-                        class="px-4 py-2 rounded-full text-xs font-bold transition-all">
-                    Executif
-                </button>
-            </div>
-        </div>
-
-        <!-- Room Cards Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            
-            <!-- CARD 1: Standar Room -->
-            <div x-show="activeFilter === 'all' || activeFilter === 'Standar'"
-                 x-transition:enter="transition ease-out duration-300"
-                 x-transition:enter-start="opacity-0 scale-95"
-                 x-transition:enter-end="opacity-100 scale-100"
-                 class="group bg-white rounded-[2.5rem] p-5 border border-stone-200 shadow-sm hover:shadow-2xl hover:border-stone-300 transition-all duration-500 flex flex-col justify-between reveal">
-                <div>
-                    <div class="relative h-64 rounded-[2rem] overflow-hidden bg-stone-100 mb-5">
-                        <img :src="roomPhotos.Standar[currentPhotoIndex.Standar]" 
-                             alt="Standar Room Bigland" 
-                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                        
-                        <div class="absolute top-4 left-4 bg-white/95 backdrop-blur-md px-3.5 py-1.5 rounded-full text-xs font-extrabold text-obsidian-900 shadow-sm">
-                            Rp 500.000 <span class="text-stone-400 font-normal">/ malam</span>
-                        </div>
-
-                        <div class="absolute top-4 right-4 bg-white/95 backdrop-blur-md px-2.5 py-1 rounded-full text-[11px] font-bold text-amber-600 flex items-center gap-1 shadow-sm">
-                            <i class="ph-fill ph-star"></i> 4.8
-                        </div>
-
-                        <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-1.5 bg-black/40 backdrop-blur-sm px-2.5 py-1 rounded-full z-10">
-                            <template x-for="(p, i) in roomPhotos.Standar" :key="i">
-                                <button @click="currentPhotoIndex.Standar = i" 
-                                        class="w-1.5 h-1.5 rounded-full transition-all"
-                                        :class="currentPhotoIndex.Standar === i ? 'w-4 bg-white' : 'bg-white/50'"></button>
-                            </template>
-                        </div>
-                    </div>
-
-                    <div class="px-2">
-                        <div class="flex items-center justify-between mb-2">
-                            <h3 class="text-xl font-bold text-obsidian-900">Standar Room</h3>
-                            <span class="text-[11px] font-bold text-stone-400">24 m²</span>
-                        </div>
-                        
-                        <p class="text-xs text-stone-500 leading-relaxed mb-5">
-                            Kamar efisien berkonsep modern minimalis dengan sirkulasi udara alami dan kasur empuk berkualitas tinggi.
-                        </p>
-
-                        <div class="space-y-2 py-3 border-y border-stone-100 text-xs text-stone-600 mb-5">
-                            <div class="flex justify-between">
-                                <span class="text-stone-400">Kapasitas:</span>
-                                <strong class="text-obsidian-900">2 Dewasa + 1 Anak</strong>
-                            </div>
-                            <div class="flex justify-between">
-                                <span class="text-stone-400">Tipe Ranjang:</span>
-                                <strong class="text-obsidian-900">1 Queen Bed (160x200)</strong>
-                            </div>
-                            <div class="flex justify-between">
-                                <span class="text-stone-400">Kamar Mandi:</span>
-                                <strong class="text-obsidian-900">Rain Shower & Water Heater</strong>
-                            </div>
-                        </div>
-
-                        <div class="flex flex-wrap gap-1.5 mb-6">
-                            <span class="bg-stone-50 text-stone-600 px-2.5 py-1 rounded-lg text-[11px] border border-stone-100 flex items-center gap-1">
-                                <i class="ph ph-wifi-high"></i> WiFi 500Mbps
-                            </span>
-                            <span class="bg-stone-50 text-stone-600 px-2.5 py-1 rounded-lg text-[11px] border border-stone-100 flex items-center gap-1">
-                                <i class="ph ph-television"></i> Smart TV 43"
-                            </span>
-                            <span class="bg-stone-50 text-stone-600 px-2.5 py-1 rounded-lg text-[11px] border border-stone-100 flex items-center gap-1">
-                                <i class="ph ph-snowflake"></i> Inverter AC
-                            </span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="px-2 pt-2 grid grid-cols-2 gap-2">
-                    <button type="button" 
-                            @click="openRoomModal('Standar')"
-                            class="w-full text-center py-3.5 rounded-2xl bg-stone-100 hover:bg-stone-200 text-obsidian-900 font-bold text-xs transition-all">
-                        Lihat Detail
-                    </button>
-                    <a href="{{ route('form.pesan') }}?tipe=Standar" 
-                       class="w-full text-center py-3.5 rounded-2xl bg-obsidian-900 hover:bg-black text-white font-bold text-xs transition-all shadow-sm">
-                        Pesan Kamar
-                    </a>
-                </div>
-            </div>
-
-            <!-- CARD 2: Deluxe Room -->
-            <div x-show="activeFilter === 'all' || activeFilter === 'Deluxe'"
-                 x-transition:enter="transition ease-out duration-300"
-                 x-transition:enter-start="opacity-0 scale-95"
-                 x-transition:enter-end="opacity-100 scale-100"
-                 class="group bg-white rounded-[2.5rem] p-5 border border-stone-200 shadow-sm hover:shadow-2xl hover:border-stone-300 transition-all duration-500 flex flex-col justify-between reveal">
-                <div>
-                    <div class="relative h-64 rounded-[2rem] overflow-hidden bg-stone-100 mb-5">
-                        <img :src="roomPhotos.Deluxe[currentPhotoIndex.Deluxe]" 
-                             alt="Deluxe Room Bigland" 
-                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                        
-                        <div class="absolute top-4 left-4 bg-white/95 backdrop-blur-md px-3.5 py-1.5 rounded-full text-xs font-extrabold text-obsidian-900 shadow-sm">
-                            Rp 800.000 <span class="text-stone-400 font-normal">/ malam</span>
-                        </div>
-
-                        <div class="absolute top-4 right-4 bg-white/95 backdrop-blur-md px-2.5 py-1 rounded-full text-[11px] font-bold text-amber-600 flex items-center gap-1 shadow-sm">
-                            <i class="ph-fill ph-star"></i> 4.9
-                        </div>
-
-                        <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-1.5 bg-black/40 backdrop-blur-sm px-2.5 py-1 rounded-full z-10">
-                            <template x-for="(p, i) in roomPhotos.Deluxe" :key="i">
-                                <button @click="currentPhotoIndex.Deluxe = i" 
-                                        class="w-1.5 h-1.5 rounded-full transition-all"
-                                        :class="currentPhotoIndex.Deluxe === i ? 'w-4 bg-white' : 'bg-white/50'"></button>
-                            </template>
-                        </div>
-                    </div>
-
-                    <div class="px-2">
-                        <div class="flex items-center justify-between mb-2">
-                            <h3 class="text-xl font-bold text-obsidian-900">Deluxe Room</h3>
-                            <span class="text-[11px] font-bold text-stone-400">36 m²</span>
-                        </div>
-                        
-                        <p class="text-xs text-stone-500 leading-relaxed mb-5">
-                            Kamar luas berpemandangan gedung bertingkat kota Jakarta dengan bathtub mewah dan area kerja santai.
-                        </p>
-
-                        <div class="space-y-2 py-3 border-y border-stone-100 text-xs text-stone-600 mb-5">
-                            <div class="flex justify-between">
-                                <span class="text-stone-400">Kapasitas:</span>
-                                <strong class="text-obsidian-900">2 Dewasa + 2 Anak</strong>
-                            </div>
-                            <div class="flex justify-between">
-                                <span class="text-stone-400">Tipe Ranjang:</span>
-                                <strong class="text-obsidian-900">1 King Bed (180x200)</strong>
-                            </div>
-                            <div class="flex justify-between">
-                                <span class="text-stone-400">Kamar Mandi:</span>
-                                <strong class="text-obsidian-900">Bathtub & Rain Shower</strong>
-                            </div>
-                        </div>
-
-                        <div class="flex flex-wrap gap-1.5 mb-6">
-                            <span class="bg-stone-50 text-stone-600 px-2.5 py-1 rounded-lg text-[11px] border border-stone-100 flex items-center gap-1">
-                                <i class="ph ph-buildings"></i> City View
-                            </span>
-                            <span class="bg-stone-50 text-stone-600 px-2.5 py-1 rounded-lg text-[11px] border border-stone-100 flex items-center gap-1">
-                                <i class="ph ph-coffee"></i> Nespresso
-                            </span>
-                            <span class="bg-stone-50 text-stone-600 px-2.5 py-1 rounded-lg text-[11px] border border-stone-100 flex items-center gap-1">
-                                <i class="ph ph-bathtub"></i> Bathtub
-                            </span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="px-2 pt-2 grid grid-cols-2 gap-2">
-                    <button type="button" 
-                            @click="openRoomModal('Deluxe')"
-                            class="w-full text-center py-3.5 rounded-2xl bg-stone-100 hover:bg-stone-200 text-obsidian-900 font-bold text-xs transition-all">
-                        Lihat Detail
-                    </button>
-                    <a href="{{ route('form.pesan') }}?tipe=Deluxe" 
-                       class="w-full text-center py-3.5 rounded-2xl bg-obsidian-900 hover:bg-black text-white font-bold text-xs transition-all shadow-sm">
-                        Pesan Kamar
-                    </a>
-                </div>
-            </div>
-
-            <!-- CARD 3: Executif Suite -->
-            <div x-show="activeFilter === 'all' || activeFilter === 'Executif'"
-                 x-transition:enter="transition ease-out duration-300"
-                 x-transition:enter-start="opacity-0 scale-95"
-                 x-transition:enter-end="opacity-100 scale-100"
-                 class="group bg-obsidian-900 text-white rounded-[2.5rem] p-5 border border-obsidian-800 shadow-xl hover:shadow-2xl transition-all duration-500 flex flex-col justify-between reveal">
-                <div>
-                    <div class="relative h-64 rounded-[2rem] overflow-hidden bg-obsidian-800 mb-5">
-                        <img :src="roomPhotos.Executif[currentPhotoIndex.Executif]" 
-                             alt="Executif Suite Bigland" 
-                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-90">
-                        
-                        <div class="absolute top-4 left-4 bg-obsidian-950/90 backdrop-blur-md px-3.5 py-1.5 rounded-full text-xs font-extrabold text-white border border-white/20 shadow-sm">
-                            Rp 1.200.000 <span class="text-stone-400 font-normal">/ malam</span>
-                        </div>
-
-                        <div class="absolute top-4 right-4 bg-white text-obsidian-900 px-2.5 py-1 rounded-full text-[11px] font-bold flex items-center gap-1 shadow-sm">
-                            <i class="ph-fill ph-crown text-amber-500"></i> VIP 5.0
-                        </div>
-
-                        <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-1.5 bg-black/60 backdrop-blur-sm px-2.5 py-1 rounded-full z-10">
-                            <template x-for="(p, i) in roomPhotos.Executif" :key="i">
-                                <button @click="currentPhotoIndex.Executif = i" 
-                                        class="w-1.5 h-1.5 rounded-full transition-all"
-                                        :class="currentPhotoIndex.Executif === i ? 'w-4 bg-gold-400' : 'bg-white/50'"></button>
-                            </template>
-                        </div>
-                    </div>
-
-                    <div class="px-2">
-                        <div class="flex items-center justify-between mb-2">
-                            <h3 class="text-xl font-bold text-white">Executif Suite</h3>
-                            <span class="text-[11px] font-bold text-gold-400">55 m²</span>
-                        </div>
-                        
-                        <p class="text-xs text-stone-300 leading-relaxed mb-5">
-                            Kemewahan absolut dengan living room terpisah, private jacuzzi, serta akses bebas 24 jam ke Executive Sky Lounge.
-                        </p>
-
-                        <div class="space-y-2 py-3 border-y border-stone-800 text-xs text-stone-300 mb-5">
-                            <div class="flex justify-between">
-                                <span class="text-stone-400">Kapasitas:</span>
-                                <strong class="text-white">3 Dewasa</strong>
-                            </div>
-                            <div class="flex justify-between">
-                                <span class="text-stone-400">Tipe Ranjang:</span>
-                                <strong class="text-white">Super King Bed (200x200)</strong>
-                            </div>
-                            <div class="flex justify-between">
-                                <span class="text-stone-400">Layanan Khusus:</span>
-                                <strong class="text-gold-400">Sky Lounge & Minibar Free</strong>
-                            </div>
-                        </div>
-
-                        <div class="flex flex-wrap gap-1.5 mb-6">
-                            <span class="bg-obsidian-800 text-stone-300 px-2.5 py-1 rounded-lg text-[11px] border border-obsidian-700 flex items-center gap-1">
-                                <i class="ph ph-crown"></i> Sky Lounge
-                            </span>
-                            <span class="bg-obsidian-800 text-stone-300 px-2.5 py-1 rounded-lg text-[11px] border border-obsidian-700 flex items-center gap-1">
-                                <i class="ph ph-sparkle"></i> Jacuzzi
-                            </span>
-                            <span class="bg-obsidian-800 text-stone-300 px-2.5 py-1 rounded-lg text-[11px] border border-obsidian-700 flex items-center gap-1">
-                                <i class="ph ph-armchair"></i> Living Area
-                            </span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="px-2 pt-2 grid grid-cols-2 gap-2">
-                    <button type="button" 
-                            @click="openRoomModal('Executif')"
-                            class="w-full text-center py-3.5 rounded-2xl bg-obsidian-800 hover:bg-obsidian-700 text-white font-bold text-xs transition-all border border-obsidian-700">
-                        Lihat Detail
-                    </button>
-                    <a href="{{ route('form.pesan') }}?tipe=Executif" 
-                       class="w-full text-center py-3.5 rounded-2xl bg-white hover:bg-stone-100 text-obsidian-900 font-bold text-xs transition-all shadow-md">
-                        Pesan Suite
-                    </a>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- SECTION: Kalkulator Estimasi Biaya Menginap Interaktif -->
-    <section id="kalkulator" class="py-16 sm:py-20 px-6 sm:px-8 max-w-5xl mx-auto">
-        <div class="bg-white rounded-[2.5rem] p-8 sm:p-12 border border-stone-200 shadow-xl relative overflow-hidden reveal">
-            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 pb-6 border-b border-stone-100">
-                <div>
-                    <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-stone-400 mb-1">
-                        <i class="ph ph-calculator text-base text-obsidian-900"></i> Fitur Interaktif
-                    </div>
-                    <h3 class="text-2xl sm:text-3xl font-extrabold text-obsidian-900 tracking-tight">
-                        Kalkulator Simulasi Biaya Menginap
+            <!-- Tall Card 1: Relax. Refresh. Rejuvenate. -->
+            <div class="exp-card tilt-card relative h-[480px] sm:h-[560px] rounded-[2.25rem] overflow-hidden shadow-xl border border-[#e4d4be] group transition-all duration-500 ease-out md:group-hover/exp:opacity-80 md:hover:!opacity-100 hover:scale-[1.02] hover:shadow-2xl">
+                <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?q=80&w=1200&auto=format&fit=crop"
+                    alt="Relax Refresh Rejuvenate" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000">
+                <div class="absolute inset-0 bg-gradient-to-t from-[#1E1A16]/95 via-[#1E1A16]/30 to-transparent"></div>
+                
+                <div class="absolute bottom-8 left-8 right-8 text-white transform transition-transform duration-500 group-hover:-translate-y-1">
+                    <h3 class="font-serif text-2xl sm:text-3xl font-medium tracking-tight mb-2">
+                        Relax. Refresh. Rejuvenate.
                     </h3>
-                </div>
-                <span class="text-xs font-semibold px-3 py-1.5 rounded-full bg-stone-100 text-stone-600 border border-stone-200 self-start md:self-auto">
-                    Kalkulasi Instan & Transparan
-                </span>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                <!-- Left Controls -->
-                <div class="lg:col-span-7 space-y-6">
-                    <div>
-                        <label class="block text-xs font-bold text-stone-500 uppercase tracking-wider mb-2.5">Pilih Tipe Kamar</label>
-                        <div class="grid grid-cols-3 gap-2.5">
-                            <button type="button" 
-                                    @click="calc.tipe = 'Standar'; calc.harga = 500000"
-                                    :class="{ 'border-obsidian-900 bg-obsidian-900 text-white shadow-sm': calc.tipe === 'Standar', 'border-stone-200 bg-stone-50 text-stone-700 hover:border-stone-300': calc.tipe !== 'Standar' }"
-                                    class="p-3 rounded-2xl border text-center transition-all">
-                                <div class="text-xs font-bold">Standar</div>
-                                <div class="text-[11px] opacity-80 mt-0.5">500k/malam</div>
-                            </button>
-                            <button type="button" 
-                                    @click="calc.tipe = 'Deluxe'; calc.harga = 800000"
-                                    :class="{ 'border-obsidian-900 bg-obsidian-900 text-white shadow-sm': calc.tipe === 'Deluxe', 'border-stone-200 bg-stone-50 text-stone-700 hover:border-stone-300': calc.tipe !== 'Deluxe' }"
-                                    class="p-3 rounded-2xl border text-center transition-all">
-                                <div class="text-xs font-bold">Deluxe</div>
-                                <div class="text-[11px] opacity-80 mt-0.5">800k/malam</div>
-                            </button>
-                            <button type="button" 
-                                    @click="calc.tipe = 'Executif'; calc.harga = 1200000"
-                                    :class="{ 'border-obsidian-900 bg-obsidian-900 text-white shadow-sm': calc.tipe === 'Executif', 'border-stone-200 bg-stone-50 text-stone-700 hover:border-stone-300': calc.tipe !== 'Executif' }"
-                                    class="p-3 rounded-2xl border text-center transition-all">
-                                <div class="text-xs font-bold">Executif</div>
-                                <div class="text-[11px] opacity-80 mt-0.5">1.2M/malam</div>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div>
-                        <div class="flex justify-between items-center mb-2">
-                            <label class="text-xs font-bold text-stone-500 uppercase tracking-wider">Durasi Menginap</label>
-                            <span class="text-xs font-extrabold text-obsidian-900 bg-stone-100 px-3 py-1 rounded-full" x-text="calc.durasi + ' Malam'"></span>
-                        </div>
-                        <input type="range" min="1" max="14" x-model="calc.durasi" class="w-full accent-obsidian-900 cursor-pointer">
-                        <div class="flex justify-between text-[10px] text-stone-400 mt-1 font-semibold">
-                            <span>1 Malam</span>
-                            <span>7 Malam</span>
-                            <span>14 Malam</span>
-                        </div>
-                    </div>
-
-                    <div class="space-y-2">
-                        <label class="block text-xs font-bold text-stone-500 uppercase tracking-wider mb-2">Layanan Tambahan</label>
-                        
-                        <label class="flex items-center justify-between p-3 rounded-2xl bg-stone-50 border border-stone-200 cursor-pointer hover:bg-stone-100 transition-colors">
-                            <div class="flex items-center gap-3">
-                                <input type="checkbox" x-model="calc.breakfast" class="w-4 h-4 rounded text-obsidian-900 accent-obsidian-900 cursor-pointer">
-                                <div>
-                                    <p class="text-xs font-bold text-obsidian-900">Breakfast Buffet di The Bigland Bistro</p>
-                                    <p class="text-[11px] text-stone-400">Menu variatif setiap pagi</p>
-                                </div>
-                            </div>
-                            <span class="text-xs font-bold text-stone-700">+ Rp 80k / malam</span>
-                        </label>
-
-                        <label class="flex items-center justify-between p-3 rounded-2xl bg-stone-50 border border-stone-200 cursor-pointer hover:bg-stone-100 transition-colors">
-                            <div class="flex items-center gap-3">
-                                <input type="checkbox" x-model="calc.airportTransfer" class="w-4 h-4 rounded text-obsidian-900 accent-obsidian-900 cursor-pointer">
-                                <div>
-                                    <p class="text-xs font-bold text-obsidian-900">Antar-Jemput Bandara Soekarno-Hatta</p>
-                                    <p class="text-[11px] text-stone-400">Armada premium ber-AC (One way)</p>
-                                </div>
-                            </div>
-                            <span class="text-xs font-bold text-stone-700">+ Rp 150k</span>
-                        </label>
-                    </div>
-                </div>
-
-                <!-- Right Price Summary Card -->
-                <div class="lg:col-span-5 bg-obsidian-900 text-white rounded-[2.2rem] p-7 sm:p-8 flex flex-col justify-between shadow-xl">
-                    <div>
-                        <span class="text-[10px] font-bold uppercase tracking-widest text-stone-400">Detail Perhitungan</span>
-                        
-                        <div class="mt-6 space-y-3 text-xs text-stone-300 pb-6 border-b border-obsidian-800">
-                            <div class="flex justify-between">
-                                <span>Kamar (<span x-text="calc.tipe"></span> x <span x-text="calc.durasi"></span> malam)</span>
-                                <span class="font-bold text-white" x-text="formatRupiah(calc.harga * calc.durasi)"></span>
-                            </div>
-                            <div class="flex justify-between" x-show="calc.breakfast">
-                                <span>Breakfast (<span x-text="calc.durasi"></span> malam)</span>
-                                <span class="font-bold text-white" x-text="formatRupiah(80000 * calc.durasi)"></span>
-                            </div>
-                            <div class="flex justify-between" x-show="calc.airportTransfer">
-                                <span>Antar-Jemput Bandara</span>
-                                <span class="font-bold text-white" x-text="formatRupiah(150000)"></span>
-                            </div>
-                            <div class="flex justify-between text-emerald-400 font-semibold" x-show="calc.durasi >= 3">
-                                <span>Diskon Long-Stay (10%)</span>
-                                <span x-text="'-' + formatRupiah(getLongStayDiscount())"></span>
-                            </div>
-                        </div>
-
-                        <div class="pt-6">
-                            <span class="text-stone-400 text-xs">Total Estimasi Pembayaran:</span>
-                            <div class="text-3xl font-extrabold text-white mt-1" x-text="formatRupiah(getTotalEstimasi())"></div>
-                            <p class="text-[11px] text-emerald-400 mt-1 font-semibold" x-show="calc.durasi >= 3">
-                                🎉 Selamat! Diskon menginap 3+ malam telah diterapkan.
-                            </p>
-                        </div>
-                    </div>
-
-                    <a :href="'{{ route('form.pesan') }}?tipe=' + calc.tipe + '&durasi=' + calc.durasi" 
-                       class="mt-8 w-full block text-center py-4 rounded-2xl bg-white hover:bg-stone-100 text-obsidian-900 font-bold text-xs transition-all shadow-md hover:scale-[1.02]">
-                        Lanjut Reservasi dengan Estimasi Ini
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION: Daftar Tarif Kamar & Komparasi Transparan -->
-    <section id="harga" class="py-16 sm:py-20 px-6 sm:px-8 max-w-5xl mx-auto">
-        <div class="bg-white rounded-[2.5rem] p-8 sm:p-12 border border-stone-200 shadow-sm reveal">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
-                <div>
-                    <h3 class="text-2xl font-extrabold text-obsidian-900 tracking-tight">Perbandingan Tarif Kamar</h3>
-                    <p class="text-xs text-stone-500 mt-1">Transparan tanpa biaya tersembunyi</p>
-                </div>
-                <a href="{{ route('form.pesan') }}" class="inline-flex items-center gap-2 text-xs font-bold text-obsidian-900 hover:text-stone-600 self-start sm:self-auto">
-                    <span>Ke Form Pemesanan</span>
-                    <i class="ph ph-arrow-right"></i>
-                </a>
-            </div>
-
-            <div class="overflow-x-auto">
-                <table class="w-full text-left border-collapse min-w-[550px]">
-                    <thead>
-                        <tr class="border-b border-stone-200 text-xs uppercase tracking-wider text-stone-400">
-                            <th class="py-4 px-4 font-bold">Tipe Kamar</th>
-                            <th class="py-4 px-4 font-bold">Kapasitas & Dimensi</th>
-                            <th class="py-4 px-4 font-bold">Fasilitas Utama</th>
-                            <th class="py-4 px-4 font-bold text-right">Tarif / Malam</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-stone-100 text-xs">
-                        <tr class="hover:bg-stone-50/70 transition-colors">
-                            <td class="py-4 px-4 font-bold text-obsidian-900 flex items-center gap-2">
-                                <i class="ph ph-bed text-base text-stone-400"></i> Standar Room
-                            </td>
-                            <td class="py-4 px-4 text-stone-600">2 Dewasa + 1 Anak (24 m²)</td>
-                            <td class="py-4 px-4 text-stone-500">Queen Bed, Smart TV 43", Shower Heater</td>
-                            <td class="py-4 px-4 text-right font-extrabold text-obsidian-900">Rp 500.000</td>
-                        </tr>
-                        <tr class="hover:bg-stone-50/70 transition-colors">
-                            <td class="py-4 px-4 font-bold text-obsidian-900 flex items-center gap-2">
-                                <i class="ph ph-buildings text-base text-stone-400"></i> Deluxe Room
-                            </td>
-                            <td class="py-4 px-4 text-stone-600">2 Dewasa + 2 Anak (36 m²)</td>
-                            <td class="py-4 px-4 text-stone-500">King Bed, City View, Bathtub, Nespresso</td>
-                            <td class="py-4 px-4 text-right font-extrabold text-obsidian-900">Rp 800.000</td>
-                        </tr>
-                        <tr class="hover:bg-stone-50/70 transition-colors bg-stone-50/50">
-                            <td class="py-4 px-4 font-bold text-obsidian-900 flex items-center gap-2">
-                                <i class="ph-fill ph-crown text-base text-amber-500"></i> Executif Suite
-                            </td>
-                            <td class="py-4 px-4 text-stone-600">3 Dewasa (55 m²)</td>
-                            <td class="py-4 px-4 text-stone-500">Super King, Private Jacuzzi, Sky Lounge Free</td>
-                            <td class="py-4 px-4 text-right font-extrabold text-obsidian-900">Rp 1.200.000</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION: Lokasi & Akses Perkotaan -->
-    <section id="lokasi" class="py-16 sm:py-24 px-6 sm:px-8 max-w-7xl mx-auto">
-        <div class="bg-white rounded-[2.5rem] p-8 sm:p-12 border border-stone-200 shadow-sm reveal">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                <div class="lg:col-span-5 space-y-6">
-                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-stone-200/70 text-obsidian-900 text-xs font-semibold">
-                        <i class="ph ph-map-pin"></i> Lokasi Strategis
-                    </div>
-                    <h2 class="text-3xl font-extrabold text-obsidian-900 tracking-tight">
-                        Akses Cepat ke Pusat Bisnis & Transit Jakarta
-                    </h2>
-                    <p class="text-xs sm:text-sm text-stone-500 leading-relaxed">
-                        Terletak strategis di kawasan prestisius Sudirman CBD, memudahkan mobilitas Anda ke pusat perkantoran, stasiun MRT, dan mall megah.
-                    </p>
-
-                    <div class="space-y-3 pt-2">
-                        <div class="flex items-center gap-3 p-3 rounded-2xl bg-stone-50 border border-stone-100">
-                            <i class="ph ph-train text-xl text-obsidian-900"></i>
-                            <div>
-                                <p class="text-xs font-bold text-obsidian-900">Stasiun MRT Sudirman</p>
-                                <p class="text-[11px] text-stone-400">5 menit jalan kaki</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-center gap-3 p-3 rounded-2xl bg-stone-50 border border-stone-100">
-                            <i class="ph ph-shopping-bag text-xl text-obsidian-900"></i>
-                            <div>
-                                <p class="text-xs font-bold text-obsidian-900">Grand Indonesia & Plaza Indonesia</p>
-                                <p class="text-[11px] text-stone-400">10 menit berkendara</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-center gap-3 p-3 rounded-2xl bg-stone-50 border border-stone-100">
-                            <i class="ph ph-airplane text-xl text-obsidian-900"></i>
-                            <div>
-                                <p class="text-xs font-bold text-obsidian-900">Bandara Soekarno-Hatta (CGK)</p>
-                                <p class="text-[11px] text-stone-400">45 menit via Tol Bandara</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <a href="https://maps.google.com" target="_blank" class="inline-flex items-center gap-2 text-xs font-bold text-obsidian-900 hover:text-stone-600">
-                        <span>Buka Rute di Google Maps</span>
-                        <i class="ph ph-arrow-up-right"></i>
-                    </a>
-                </div>
-
-                <div class="lg:col-span-7 h-[360px] sm:h-[420px] rounded-[2rem] overflow-hidden border border-stone-200 shadow-inner">
-                    <iframe 
-                        src="https://www.google.com/maps?q=Jl.+Jend.+Sudirman+No.+123+Jakarta+Pusat&z=15&output=embed" 
-                        width="100%" 
-                        height="100%" 
-                        style="border:0;" 
-                        allowfullscreen="" 
-                        loading="lazy">
-                    </iframe>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION: Ulasan Tamu -->
-    <section id="ulasan" class="py-16 sm:py-24 px-6 sm:px-8 max-w-7xl mx-auto">
-        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 reveal">
-            <div>
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-stone-200/70 text-obsidian-900 text-xs font-semibold mb-3">
-                    <i class="ph-fill ph-chats-teardrop"></i> Ulasan Nyata
-                </div>
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-obsidian-900 tracking-tight">
-                    Kesan Tamu Menginap di Bigland
-                </h2>
-            </div>
-
-            <div class="flex flex-wrap items-center gap-2 bg-stone-100 p-1.5 rounded-full border border-stone-200 self-start md:self-auto">
-                <button @click="reviewFilter = 'all'" 
-                        :class="{ 'bg-white text-obsidian-900 shadow-sm': reviewFilter === 'all', 'text-stone-500': reviewFilter !== 'all' }"
-                        class="px-4 py-2 rounded-full text-xs font-bold transition-all">
-                    Semua (3)
-                </button>
-                <button @click="reviewFilter = 'bisnis'" 
-                        :class="{ 'bg-white text-obsidian-900 shadow-sm': reviewFilter === 'bisnis', 'text-stone-500': reviewFilter !== 'bisnis' }"
-                        class="px-4 py-2 rounded-full text-xs font-bold transition-all">
-                    Bisnis
-                </button>
-                <button @click="reviewFilter = 'liburan'" 
-                        :class="{ 'bg-white text-obsidian-900 shadow-sm': reviewFilter === 'liburan', 'text-stone-500': reviewFilter !== 'liburan' }"
-                        class="px-4 py-2 rounded-full text-xs font-bold transition-all">
-                    Liburan
-                </button>
-            </div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <!-- Review 1 -->
-            <div x-show="reviewFilter === 'all' || reviewFilter === 'bisnis'"
-                 x-transition:enter="transition ease-out duration-300"
-                 class="bg-white rounded-[2.5rem] p-7 border border-stone-200 shadow-sm flex flex-col justify-between reveal">
-                <div>
-                    <div class="flex items-center justify-between mb-4">
-                        <div class="flex items-center gap-1 text-amber-500 text-xs">
-                            <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
-                        </div>
-                        <span class="text-[10px] font-bold bg-emerald-50 text-emerald-700 px-2.5 py-1 rounded-full">Tamu Terverifikasi</span>
-                    </div>
-                    <p class="text-xs text-stone-600 leading-relaxed mb-6">
-                        "Desain kamar minimalisnya sangat menenangkan pikiran. Meja kerjanya ergonomis dan koneksi WiFi luar biasa cepat untuk meeting online. Bigland benar-benar hotel favorit saya di Sudirman."
+                    <div class="w-12 h-0.5 bg-[#B08D57] mb-3 transition-all duration-500 group-hover:w-20"></div>
+                    <p class="text-xs text-white/90 leading-relaxed font-light">
+                        Treat yourself to a peaceful escape with our soothing sky pool, curated spa treatments, and world-class care.
                     </p>
                 </div>
-                <div class="flex items-center gap-3 pt-4 border-t border-stone-100">
-                    <div class="w-9 h-9 rounded-full bg-obsidian-900 text-white font-bold flex items-center justify-center text-xs">RA</div>
-                    <div>
-                        <h4 class="text-xs font-bold text-obsidian-900">Rizky Aditya</h4>
-                        <p class="text-[11px] text-stone-400">Deluxe Room • 2 Malam</p>
-                    </div>
+            </div>
+
+            <!-- Tall Card 2: Bistro & Refresh -->
+            <div class="exp-card tilt-card relative h-[480px] sm:h-[560px] rounded-[2.25rem] overflow-hidden shadow-xl border border-[#e4d4be] group transition-all duration-500 ease-out md:group-hover/exp:opacity-80 md:hover:!opacity-100 hover:scale-[1.02] hover:shadow-2xl">
+                <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=800&auto=format&fit=crop"
+                    alt="Refresh Wellness" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000">
+                <div class="absolute inset-0 bg-gradient-to-t from-[#1E1A16]/80 via-[#1E1A16]/10 to-transparent"></div>
+                
+                <div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none p-6 text-center">
+                    <span class="font-serif text-3xl sm:text-4xl text-white font-light tracking-widest drop-shadow-md group-hover:scale-110 transition-transform duration-500">
+                        Refresh
+                    </span>
+                    <span class="text-xs text-white/80 uppercase tracking-widest mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        Artisan Gastronomi & Bistro
+                    </span>
                 </div>
             </div>
 
-            <!-- Review 2 -->
-            <div x-show="reviewFilter === 'all' || reviewFilter === 'liburan'"
-                 x-transition:enter="transition ease-out duration-300"
-                 class="bg-white rounded-[2.5rem] p-7 border border-stone-200 shadow-sm flex flex-col justify-between reveal">
-                <div>
-                    <div class="flex items-center justify-between mb-4">
-                        <div class="flex items-center gap-1 text-amber-500 text-xs">
-                            <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
-                        </div>
-                        <span class="text-[10px] font-bold bg-emerald-50 text-emerald-700 px-2.5 py-1 rounded-full">Tamu Terverifikasi</span>
-                    </div>
-                    <p class="text-xs text-stone-600 leading-relaxed mb-6">
-                        "Executif Suite-nya mewah banget! Akses ke Sky Lounge sore hari sambil menikmati sunset kota Jakarta sangat berkesan. Staf Bigland luar biasa ramah dan solutif."
-                    </p>
-                </div>
-                <div class="flex items-center gap-3 pt-4 border-t border-stone-100">
-                    <div class="w-9 h-9 rounded-full bg-stone-200 text-obsidian-900 font-bold flex items-center justify-center text-xs">DN</div>
-                    <div>
-                        <h4 class="text-xs font-bold text-obsidian-900">Dinda Nadila</h4>
-                        <p class="text-[11px] text-stone-400">Executif Suite • 3 Malam</p>
-                    </div>
+            <!-- Tall Card 3: Sanctuary & Relax -->
+            <div class="exp-card tilt-card relative h-[480px] sm:h-[560px] rounded-[2.25rem] overflow-hidden shadow-xl border border-[#e4d4be] group transition-all duration-500 ease-out md:group-hover/exp:opacity-80 md:hover:!opacity-100 hover:scale-[1.02] hover:shadow-2xl">
+                <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800&auto=format&fit=crop"
+                    alt="Relax Sanctuary" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000">
+                <div class="absolute inset-0 bg-gradient-to-t from-[#1E1A16]/80 via-[#1E1A16]/10 to-transparent"></div>
+                
+                <div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none p-6 text-center">
+                    <span class="font-serif text-3xl sm:text-4xl text-white font-light tracking-widest drop-shadow-md group-hover:scale-110 transition-transform duration-500">
+                        Relax
+                    </span>
+                    <span class="text-xs text-white/80 uppercase tracking-widest mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        Private Suite Sanctuary
+                    </span>
                 </div>
             </div>
 
-            <!-- Review 3 -->
-            <div x-show="reviewFilter === 'all' || reviewFilter === 'liburan'"
-                 x-transition:enter="transition ease-out duration-300"
-                 class="bg-white rounded-[2.5rem] p-7 border border-stone-200 shadow-sm flex flex-col justify-between reveal">
-                <div>
-                    <div class="flex items-center justify-between mb-4">
-                        <div class="flex items-center gap-1 text-amber-500 text-xs">
-                            <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
-                        </div>
-                        <span class="text-[10px] font-bold bg-emerald-50 text-emerald-700 px-2.5 py-1 rounded-full">Tamu Terverifikasi</span>
-                    </div>
-                    <p class="text-xs text-stone-600 leading-relaxed mb-6">
-                        "Proses check-in cepat tanpa ribet. Lokasi sangat strategis tinggal jalan kaki ke MRT. Kebersihan kamar luar biasa rapi dan wangi. Pasti akan kembali lagi ke Bigland."
-                    </p>
-                </div>
-                <div class="flex items-center gap-3 pt-4 border-t border-stone-100">
-                    <div class="w-9 h-9 rounded-full bg-stone-100 text-obsidian-900 font-bold flex items-center justify-center text-xs">AS</div>
-                    <div>
-                        <h4 class="text-xs font-bold text-obsidian-900">Ahmad Setiawan</h4>
-                        <p class="text-[11px] text-stone-400">Standar Room • 1 Malam</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION: FAQ Accordion Interaktif -->
-    <section id="faq" class="py-16 sm:py-20 px-6 sm:px-8 max-w-4xl mx-auto">
-        <div class="text-center mb-12 reveal">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-stone-200/70 text-obsidian-900 text-xs font-semibold mb-3">
-                <i class="ph ph-question"></i> Pusat Informasi
-            </div>
-            <h2 class="text-3xl font-extrabold text-obsidian-900 tracking-tight mb-3">
-                Pertanyaan yang Sering Diajukan (FAQ)
-            </h2>
-            <p class="text-xs text-stone-500">Informasi esensial untuk kenyamanan rencana menginap Anda di Bigland.</p>
         </div>
 
-        <div class="space-y-3 reveal" x-data="{ openFaq: 1 }">
-            <div class="bg-white rounded-2xl border border-stone-200 overflow-hidden shadow-sm">
-                <button type="button" 
-                        @click="openFaq = (openFaq === 1 ? null : 1)" 
-                        class="w-full px-6 py-4 text-left flex items-center justify-between text-xs sm:text-sm font-bold text-obsidian-900 hover:bg-stone-50 transition-colors">
-                    <span>Kapan waktu check-in dan check-out di Bigland?</span>
-                    <i class="ph ph-caret-down text-base text-stone-400 transition-transform duration-300" :class="{ 'rotate-180': openFaq === 1 }"></i>
-                </button>
-                <div x-show="openFaq === 1" 
-                     x-transition:enter="transition ease-out duration-200"
-                     x-transition:enter-start="opacity-0 -translate-y-2"
-                     x-transition:enter-end="opacity-100 translate-y-0"
-                     class="px-6 pb-5 pt-1 text-xs text-stone-500 leading-relaxed border-t border-stone-100"
-                     style="display: none;">
-                    Waktu check-in standar dimulai pukul 14.00 WIB, dan waktu check-out maksimal pukul 12.00 WIB. Layanan early check-in atau late check-out dapat dikonfirmasikan terlebih dahulu ke resepsionis sesuai ketersediaan kamar.
-                </div>
-            </div>
-
-            <div class="bg-white rounded-2xl border border-stone-200 overflow-hidden shadow-sm">
-                <button type="button" 
-                        @click="openFaq = (openFaq === 2 ? null : 2)" 
-                        class="w-full px-6 py-4 text-left flex items-center justify-between text-xs sm:text-sm font-bold text-obsidian-900 hover:bg-stone-50 transition-colors">
-                    <span>Apakah tersedia sarapan untuk pemesanan kamar standar?</span>
-                    <i class="ph ph-caret-down text-base text-stone-400 transition-transform duration-300" :class="{ 'rotate-180': openFaq === 2 }"></i>
-                </button>
-                <div x-show="openFaq === 2" 
-                     x-transition:enter="transition ease-out duration-200"
-                     x-transition:enter-start="opacity-0 -translate-y-2"
-                     x-transition:enter-end="opacity-100 translate-y-0"
-                     class="px-6 pb-5 pt-1 text-xs text-stone-500 leading-relaxed border-t border-stone-100"
-                     style="display: none;">
-                    Kamar standar dapat ditambahkan fasilitas sarapan prasmanan (buffet) seharga Rp 80.000 per malam saat mengisi form reservasi atau langsung saat check-in di hotel.
-                </div>
-            </div>
-
-            <div class="bg-white rounded-2xl border border-stone-200 overflow-hidden shadow-sm">
-                <button type="button" 
-                        @click="openFaq = (openFaq === 3 ? null : 3)" 
-                        class="w-full px-6 py-4 text-left flex items-center justify-between text-xs sm:text-sm font-bold text-obsidian-900 hover:bg-stone-50 transition-colors">
-                    <span>Bagaimana fasilitas parkir dan akses transportasi di Bigland?</span>
-                    <i class="ph ph-caret-down text-base text-stone-400 transition-transform duration-300" :class="{ 'rotate-180': openFaq === 3 }"></i>
-                </button>
-                <div x-show="openFaq === 3" 
-                     x-transition:enter="transition ease-out duration-200"
-                     x-transition:enter-start="opacity-0 -translate-y-2"
-                     x-transition:enter-end="opacity-100 translate-y-0"
-                     class="px-6 pb-5 pt-1 text-xs text-stone-500 leading-relaxed border-t border-stone-100"
-                     style="display: none;">
-                    Kami menyediakan area parkir luas gratis dengan sistem keamanan 24 jam dan fasilitas valet. Selain itu hotel berjarak hanya 5 menit jalan kaki ke Stasiun MRT Sudirman.
-                </div>
-            </div>
-
-            <div class="bg-white rounded-2xl border border-stone-200 overflow-hidden shadow-sm">
-                <button type="button" 
-                        @click="openFaq = (openFaq === 4 ? null : 4)" 
-                        class="w-full px-6 py-4 text-left flex items-center justify-between text-xs sm:text-sm font-bold text-obsidian-900 hover:bg-stone-50 transition-colors">
-                    <span>Bagaimana cara melakukan perubahan atau pembatalan reservasi?</span>
-                    <i class="ph ph-caret-down text-base text-stone-400 transition-transform duration-300" :class="{ 'rotate-180': openFaq === 4 }"></i>
-                </button>
-                <div x-show="openFaq === 4" 
-                     x-transition:enter="transition ease-out duration-200"
-                     x-transition:enter-start="opacity-0 -translate-y-2"
-                     x-transition:enter-end="opacity-100 translate-y-0"
-                     class="px-6 pb-5 pt-1 text-xs text-stone-500 leading-relaxed border-t border-stone-100"
-                     style="display: none;">
-                    Anda dapat melihat detail reservasi di halaman "Riwayat Reservasiku" atau menghubungi tim reservasi Bigland via telepon / WhatsApp dengan menyertakan Nomor Identitas KTP yang digunakan saat pemesanan.
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION: Bottom Statement Banner -->
-    <section class="py-12 px-6 sm:px-8 max-w-7xl mx-auto">
-        <div class="bg-obsidian-900 text-white rounded-[2.5rem] p-10 sm:p-16 text-center relative overflow-hidden shadow-2xl flex flex-col items-center reveal">
-            <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-obsidian-800 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
-            
-            <span class="text-xs uppercase tracking-widest text-gold-400 font-bold mb-3 relative z-10">Layanan Tamu Istimewa</span>
-            <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight mb-4 max-w-2xl relative z-10">
-                Rasakan Pengalaman Menginap Terbaik di Bigland
-            </h2>
-            <p class="text-stone-300 max-w-lg mx-auto mb-8 text-xs sm:text-sm leading-relaxed relative z-10">
-                Amankan kamar idaman Anda sekarang. Dapatkan jaminan tarif terbaik dan konfirmasi reservasi langsung.
-            </p>
-            
-            <a href="{{ route('form.pesan') }}" class="inline-flex items-center gap-3 bg-white text-obsidian-900 px-8 py-4 rounded-full font-bold text-xs sm:text-sm hover:bg-stone-100 transition-all shadow-xl hover:scale-105 relative z-10">
-                <span>Buka Formulir Reservasi</span>
+        <!-- Tombol Sekunder Outline Hitam Tipis #1E1A16 -->
+        <div id="pengalaman-btn" class="text-center mt-10">
+            <a href="#kamar"
+                class="inline-flex items-center gap-2 border border-[#1E1A16] text-[#1E1A16] hover:bg-[#1E1A16] hover:text-white px-7 py-3 rounded-full text-xs font-semibold transition-all hover:scale-105 shadow-sm">
+                <span>Explore More</span>
                 <i class="ph ph-arrow-right"></i>
             </a>
         </div>
     </section>
 
-    <!-- Minimalist Footer -->
-    <footer class="bg-white border-t border-stone-200 pt-16 pb-10 mt-16">
-        <div class="max-w-7xl mx-auto px-6 sm:px-8 grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+    <!-- SECTION: WEDDING & EVENT PLANNING (Serif Heading Kontras & 3D Fan-out Gallery) -->
+    <section id="wedding" class="py-20 sm:py-28 px-6 sm:px-10 max-w-7xl mx-auto overflow-hidden">
+        <!-- Centered Header -->
+        <div id="wedding-header" class="text-center max-w-2xl mx-auto mb-14">
+            <span class="text-[11px] font-bold uppercase tracking-widest text-[#B08D57] block mb-2">
+                Create Unforgettable Moments in Extraordinary Spaces
+            </span>
+            <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-[#1E1A16] tracking-tight">
+                Wedding & Event Planning
+            </h2>
+            <p class="mt-4 font-serif text-xs sm:text-sm text-[#635b52] leading-relaxed font-normal">
+                From intimate beachfront vows to grand ballroom celebrations, we specialize in turning your dream event into a stunning reality – all with the touch of luxury and seamless planning.
+            </p>
+        </div>
+
+        <!-- 3D Fan-out Layered Perspective Gallery Showcase -->
+        <div id="wedding-gallery" class="wedding-gallery-container relative max-w-6xl mx-auto py-12 px-4 flex items-center justify-center min-h-[460px] sm:min-h-[500px] lg:min-h-[540px]">
             
-            <div class="md:col-span-2 space-y-4">
-                <a href="/" class="flex items-center gap-3">
-                    <div class="w-9 h-9 rounded-2xl bg-obsidian-900 text-white flex items-center justify-center font-bold">
-                        <i class="ph-fill ph-buildings text-lg text-gold-400"></i>
-                    </div>
-                    <span class="text-xl font-bold tracking-tight text-obsidian-900">Bigland</span>
-                </a>
-                <p class="text-xs text-stone-500 max-w-sm leading-relaxed">
-                    Akomodasi minimalis modern di pusat kota Jakarta. Menghadirkan kenyamanan istirahat paripurna dan kemudahan mobilitas untuk setiap perjalanan Anda.
-                </p>
-                <div class="flex items-center gap-3 pt-2">
-                    <a href="#" class="w-8 h-8 rounded-full bg-stone-100 text-stone-600 flex items-center justify-center text-sm hover:bg-obsidian-900 hover:text-white transition-colors">
-                        <i class="ph-bold ph-instagram-logo"></i>
-                    </a>
-                    <a href="#" class="w-8 h-8 rounded-full bg-stone-100 text-stone-600 flex items-center justify-center text-sm hover:bg-obsidian-900 hover:text-white transition-colors">
-                        <i class="ph-bold ph-facebook-logo"></i>
-                    </a>
-                    <a href="#" class="w-8 h-8 rounded-full bg-stone-100 text-stone-600 flex items-center justify-center text-sm hover:bg-obsidian-900 hover:text-white transition-colors">
-                        <i class="ph-bold ph-whatsapp-logo"></i>
-                    </a>
+            <!-- Left Card (-7 deg -> mencar ke kiri saat hover) -->
+            <div class="wedding-fan wedding-fan-left w-[240px] sm:w-[280px] lg:w-[330px] h-[330px] sm:h-[390px] lg:h-[440px] rounded-3xl overflow-hidden shadow-xl border-2 border-white cursor-pointer group">
+                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=800&auto=format&fit=crop"
+                    alt="Intimate Wedding" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                <div class="absolute inset-0 bg-gradient-to-t from-[#1E1A16]/85 via-[#1E1A16]/20 to-transparent flex flex-col justify-end p-5 sm:p-6 text-white">
+                    <span class="text-[10px] uppercase font-bold tracking-widest text-[#B08D57]">Intimate Ceremony</span>
+                    <h3 class="font-serif text-base sm:text-xl font-bold mt-0.5">Intimate Wedding</h3>
+                    <p class="text-[11px] text-white/80 mt-1 line-clamp-2">Upacara sakral privat dengan suasana hangat dan berkesan.</p>
                 </div>
             </div>
 
-            <div>
-                <h4 class="text-xs font-bold uppercase tracking-wider text-obsidian-900 mb-4">Navigasi</h4>
-                <ul class="space-y-2.5 text-xs text-stone-500">
-                    <li><a href="#kamar" class="hover:text-obsidian-900 transition-colors">Koleksi Kamar</a></li>
-                    <li><a href="#bento-fasilitas" class="hover:text-obsidian-900 transition-colors">Fasilitas Hotel</a></li>
-                    <li><a href="#kalkulator" class="hover:text-obsidian-900 transition-colors">Kalkulator Estimasi</a></li>
-                    <li><a href="#harga" class="hover:text-obsidian-900 transition-colors">Daftar Tarif</a></li>
-                    <li><a href="#lokasi" class="hover:text-obsidian-900 transition-colors">Peta & Lokasi</a></li>
-                    <li><a href="#faq" class="hover:text-obsidian-900 transition-colors">Pusat Bantuan</a></li>
+            <!-- Center Main Elevated Card (0 deg -> elevasi saat hover) -->
+            <div class="wedding-fan wedding-fan-center w-[270px] sm:w-[380px] lg:w-[450px] h-[360px] sm:h-[430px] lg:h-[480px] rounded-3xl sm:rounded-[2.5rem] overflow-hidden shadow-2xl border-4 border-white cursor-pointer group">
+                <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1200&auto=format&fit=crop"
+                    alt="Wedding & Celebration Suite" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                <div class="absolute inset-0 bg-gradient-to-t from-[#1E1A16]/80 via-[#1E1A16]/20 to-transparent"></div>
+                <div class="absolute bottom-5 sm:bottom-7 left-5 sm:left-7 right-5 sm:right-7 text-white">
+                    <span class="text-[10px] uppercase font-bold tracking-widest text-[#B08D57]">Grand Celebration</span>
+                    <h3 class="font-serif text-lg sm:text-2xl font-bold mt-1">Panoramic Ballroom &amp; Terrace</h3>
+                    <p class="text-xs text-white/80 mt-1 line-clamp-2">Resepsi megah berkapasitas hingga 800 tamu dengan panorama cakrawala kota.</p>
+                </div>
+            </div>
+
+            <!-- Right Card (+7 deg -> mencar ke kanan saat hover) -->
+            <div class="wedding-fan wedding-fan-right w-[240px] sm:w-[280px] lg:w-[330px] h-[330px] sm:h-[390px] lg:h-[440px] rounded-3xl overflow-hidden shadow-xl border-2 border-white cursor-pointer group">
+                <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=800&auto=format&fit=crop"
+                    alt="Grand Ballroom Celebration" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                <div class="absolute inset-0 bg-gradient-to-t from-[#1E1A16]/85 via-[#1E1A16]/25 to-transparent flex flex-col justify-end p-5 sm:p-6 text-white">
+                    <span class="text-[10px] uppercase font-bold tracking-widest text-[#B08D57]">Exclusive Banquet</span>
+                    <h3 class="font-serif text-base sm:text-xl font-bold mt-0.5">Executive Gala Dinner</h3>
+                    <p class="text-[11px] text-white/80 mt-1 line-clamp-2">Jamuan makan malam mewah dengan hidangan gastronomi kelas dunia.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Bottom Description & Button -->
+        <div id="wedding-footer" class="text-center max-w-lg mx-auto mt-12">
+            <h4 class="font-serif text-xl font-medium text-[#1E1A16] mb-2">
+                Custom Event Planning
+            </h4>
+            <p class="text-xs text-[#635b52] leading-relaxed font-light mb-6">
+                From decor to dining, our planners coordinate every detail to match your vision – ensuring a stress-free and luxurious experience.
+            </p>
+            <a href="{{ route('form.pesan') }}"
+                class="inline-flex items-center gap-2 border border-[#1E1A16] text-[#1E1A16] hover:bg-[#1E1A16] hover:text-white px-7 py-2.5 rounded-full text-xs font-semibold transition-all hover:scale-105 shadow-sm">
+                <span>Explore More</span>
+                <i class="ph ph-arrow-right"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- SECTION: CHOOSE YOUR ROOM (Luxury Editorial Showcase) -->
+    <section id="kamar" class="py-20 sm:py-28 px-6 sm:px-10 max-w-7xl mx-auto overflow-hidden">
+        
+        <!-- Section Header -->
+        <div id="kamar-header" class="text-center max-w-2xl mx-auto mb-14 sm:mb-18">
+            <h2 class="font-serif text-3xl sm:text-5xl font-normal text-[#1E1A16] tracking-tight">
+                Choose Your <span class="italic font-normal text-[#B08D57]">Room</span>
+            </h2>
+            <p class="mt-4 font-serif text-xs sm:text-sm text-[#635b52] leading-relaxed font-normal max-w-lg mx-auto">
+                Explore a variety of rooms tailored to your comfort and style. Whether you're traveling solo or with family, find the perfect space to unwind.
+            </p>
+        </div>
+
+        <!-- 3 Luxury Room Cards -->
+        <div id="room-cards-container" class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10 items-stretch">
+            
+            <!-- Room 1: Standar Room -->
+            <div class="room-card tilt-card bg-white text-[#1E1A16] rounded-[2rem] sm:rounded-[2.25rem] overflow-hidden border border-[#e4d4be]/80 shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 flex flex-col group relative">
+                <!-- Image Header -->
+                <div class="relative h-64 sm:h-72 overflow-hidden bg-[#FAF7F2]">
+                    <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?q=80&w=800&auto=format&fit=crop"
+                        alt="Standar Room" class="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#1E1A16]/85 via-black/20 to-transparent"></div>
+
+                    <!-- Bottom Price Overlay -->
+                    <div class="absolute bottom-4 left-4 right-4 z-10 text-white">
+                        <span class="text-[10px] uppercase font-bold tracking-wider text-white/70 block">Mulai dari</span>
+                        <div class="flex items-baseline gap-1 mt-0.5">
+                            <span class="font-serif text-xl sm:text-2xl font-bold text-[#f5ede2]">Rp 500.000</span>
+                            <span class="text-xs text-white/75 font-normal">/ malam</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Content Body -->
+                <div class="p-6 sm:p-7 flex flex-col flex-1">
+                    <div class="mb-2">
+                        <span class="text-[10px] font-bold tracking-wider uppercase text-[#B08D57]">Kategori Standar</span>
+                        <h3 class="font-serif text-xl sm:text-2xl font-bold text-[#1E1A16] group-hover:text-[#B08D57] transition-colors mt-0.5">
+                            Standar Room
+                        </h3>
+                    </div>
+                    <p class="text-xs text-[#635b52] leading-relaxed line-clamp-2">
+                        Kamar berdesain minimalis elegan dengan pencahayaan alami dan fasilitas esensial lengkap.
+                    </p>
+
+                    <!-- Specs Grid -->
+                    <div class="grid grid-cols-2 gap-2.5 my-6 py-4 border-y border-[#FAF7F2]">
+                        <div class="flex items-center gap-2 text-xs text-[#635b52]">
+                            <div class="w-7 h-7 rounded-lg bg-[#FAF7F2] flex items-center justify-center text-[#B08D57] shrink-0 border border-[#e4d4be]/50">
+                                <i class="ph ph-arrows-out text-xs"></i>
+                            </div>
+                            <span class="font-medium text-[11px] truncate">24 m²</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs text-[#635b52]">
+                            <div class="w-7 h-7 rounded-lg bg-[#FAF7F2] flex items-center justify-center text-[#B08D57] shrink-0 border border-[#e4d4be]/50">
+                                <i class="ph ph-users text-xs"></i>
+                            </div>
+                            <span class="font-medium text-[11px] truncate">2 Tamu Dewasa</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs text-[#635b52]">
+                            <div class="w-7 h-7 rounded-lg bg-[#FAF7F2] flex items-center justify-center text-[#B08D57] shrink-0 border border-[#e4d4be]/50">
+                                <i class="ph ph-bed text-xs"></i>
+                            </div>
+                            <span class="font-medium text-[11px] truncate">1 Queen Bed</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs text-[#635b52]">
+                            <div class="w-7 h-7 rounded-lg bg-[#FAF7F2] flex items-center justify-center text-[#B08D57] shrink-0 border border-[#e4d4be]/50">
+                                <i class="ph ph-buildings text-xs"></i>
+                            </div>
+                            <span class="font-medium text-[11px] truncate">City View</span>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="mt-auto flex items-center gap-2.5">
+                        <button type="button" @click="openRoomModal('Standar')"
+                            class="flex-1 py-3 px-3 rounded-full border border-[#e4d4be] hover:border-[#1E1A16] hover:bg-[#FAF7F2] text-[#1E1A16] text-xs font-semibold text-center transition-all">
+                            Lihat Detail
+                        </button>
+                        <a href="{{ route('form.pesan') }}?tipe=Standar"
+                            class="flex-1 py-3 px-3 rounded-full bg-[#1E1A16] hover:bg-[#B08D57] text-white text-xs font-semibold text-center transition-all shadow-sm hover:shadow-md inline-flex items-center justify-center gap-1.5 group/btn">
+                            <span>Pesan</span>
+                            <i class="ph ph-arrow-right group-hover/btn:translate-x-1 transition-transform text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Room 2: Deluxe Room (Highlighted with Gold Accent) -->
+            <div class="room-card tilt-card bg-white text-[#1E1A16] rounded-[2rem] sm:rounded-[2.25rem] overflow-hidden border-2 border-[#B08D57] shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 flex flex-col group relative ring-4 ring-[#B08D57]/10">
+                <!-- Image Header -->
+                <div class="relative h-64 sm:h-72 overflow-hidden bg-[#FAF7F2]">
+                    <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800&auto=format&fit=crop"
+                        alt="Deluxe Room" class="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#1E1A16]/85 via-black/20 to-transparent"></div>
+
+                    <!-- Top Badges -->
+                    <div class="absolute top-4 left-4 z-10">
+                        <span class="bg-[#B08D57] text-white text-[10px] font-bold uppercase tracking-wider px-3.5 py-1 rounded-full shadow-md flex items-center gap-1">
+                            <i class="ph-fill ph-crown"></i>Best Seller
+                        </span>
+                    </div>
+
+                    <!-- Bottom Price Overlay -->
+                    <div class="absolute bottom-4 left-4 right-4 z-10 text-white">
+                        <span class="text-[10px] uppercase font-bold tracking-wider text-white/70 block">Mulai dari</span>
+                        <div class="flex items-baseline gap-1 mt-0.5">
+                            <span class="font-serif text-xl sm:text-2xl font-bold text-[#f5ede2]">Rp 800.000</span>
+                            <span class="text-xs text-white/75 font-normal">/ malam</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Content Body -->
+                <div class="p-6 sm:p-7 flex flex-col flex-1">
+                    <div class="mb-2">
+                        <span class="text-[10px] font-bold tracking-wider uppercase text-[#B08D57]">Kategori Deluxe</span>
+                        <h3 class="font-serif text-xl sm:text-2xl font-bold text-[#1E1A16] group-hover:text-[#B08D57] transition-colors mt-0.5">
+                            Deluxe Room
+                        </h3>
+                    </div>
+                    <p class="text-xs text-[#635b52] leading-relaxed line-clamp-2">
+                        Keseimbangan sempurna antara estetika kontemporer, ruang santai luas, dan rain-shower mewah.
+                    </p>
+
+                    <!-- Specs Grid -->
+                    <div class="grid grid-cols-2 gap-2.5 my-6 py-4 border-y border-[#FAF7F2]">
+                        <div class="flex items-center gap-2 text-xs text-[#635b52]">
+                            <div class="w-7 h-7 rounded-lg bg-[#FAF7F2] flex items-center justify-center text-[#B08D57] shrink-0 border border-[#e4d4be]/50">
+                                <i class="ph ph-arrows-out text-xs"></i>
+                            </div>
+                            <span class="font-medium text-[11px] truncate">36 m²</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs text-[#635b52]">
+                            <div class="w-7 h-7 rounded-lg bg-[#FAF7F2] flex items-center justify-center text-[#B08D57] shrink-0 border border-[#e4d4be]/50">
+                                <i class="ph ph-users text-xs"></i>
+                            </div>
+                            <span class="font-medium text-[11px] truncate">2 Tamu Dewasa</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs text-[#635b52]">
+                            <div class="w-7 h-7 rounded-lg bg-[#FAF7F2] flex items-center justify-center text-[#B08D57] shrink-0 border border-[#e4d4be]/50">
+                                <i class="ph ph-bed text-xs"></i>
+                            </div>
+                            <span class="font-medium text-[11px] truncate">1 King Size Bed</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs text-[#635b52]">
+                            <div class="w-7 h-7 rounded-lg bg-[#FAF7F2] flex items-center justify-center text-[#B08D57] shrink-0 border border-[#e4d4be]/50">
+                                <i class="ph ph-buildings text-xs"></i>
+                            </div>
+                            <span class="font-medium text-[11px] truncate">Skyline View</span>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="mt-auto flex items-center gap-2.5">
+                        <button type="button" @click="openRoomModal('Deluxe')"
+                            class="flex-1 py-3 px-3 rounded-full border border-[#e4d4be] hover:border-[#1E1A16] hover:bg-[#FAF7F2] text-[#1E1A16] text-xs font-semibold text-center transition-all">
+                            Lihat Detail
+                        </button>
+                        <a href="{{ route('form.pesan') }}?tipe=Deluxe"
+                            class="flex-1 py-3 px-3 rounded-full bg-[#B08D57] hover:bg-[#9c7743] text-white text-xs font-semibold text-center transition-all shadow-md hover:shadow-lg inline-flex items-center justify-center gap-1.5 group/btn">
+                            <span>Pesan</span>
+                            <i class="ph ph-arrow-right group-hover/btn:translate-x-1 transition-transform text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Room 3: Executif Suite -->
+            <div class="room-card tilt-card bg-white text-[#1E1A16] rounded-[2rem] sm:rounded-[2.25rem] overflow-hidden border border-[#e4d4be]/80 shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 flex flex-col group relative">
+                <!-- Image Header -->
+                <div class="relative h-64 sm:h-72 overflow-hidden bg-[#FAF7F2]">
+                    <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=800&auto=format&fit=crop"
+                        alt="Executif Suite" class="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#1E1A16]/85 via-black/20 to-transparent"></div>
+
+                    <!-- Bottom Price Overlay -->
+                    <div class="absolute bottom-4 left-4 right-4 z-10 text-white">
+                        <span class="text-[10px] uppercase font-bold tracking-wider text-white/70 block">Mulai dari</span>
+                        <div class="flex items-baseline gap-1 mt-0.5">
+                            <span class="font-serif text-xl sm:text-2xl font-bold text-[#f5ede2]">Rp 1.200.000</span>
+                            <span class="text-xs text-white/75 font-normal">/ malam</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Content Body -->
+                <div class="p-6 sm:p-7 flex flex-col flex-1">
+                    <div class="mb-2">
+                        <span class="text-[10px] font-bold tracking-wider uppercase text-[#B08D57]">Kategori Suite</span>
+                        <h3 class="font-serif text-xl sm:text-2xl font-bold text-[#1E1A16] group-hover:text-[#B08D57] transition-colors mt-0.5">
+                            Executif Suite
+                        </h3>
+                    </div>
+                    <p class="text-xs text-[#635b52] leading-relaxed line-clamp-2">
+                        Kemewahan privat puncak dengan bathtub panoramik, ruang tamu terpisah, dan akses Executive Lounge.
+                    </p>
+
+                    <!-- Specs Grid -->
+                    <div class="grid grid-cols-2 gap-2.5 my-6 py-4 border-y border-[#FAF7F2]">
+                        <div class="flex items-center gap-2 text-xs text-[#635b52]">
+                            <div class="w-7 h-7 rounded-lg bg-[#FAF7F2] flex items-center justify-center text-[#B08D57] shrink-0 border border-[#e4d4be]/50">
+                                <i class="ph ph-arrows-out text-xs"></i>
+                            </div>
+                            <span class="font-medium text-[11px] truncate">54 m²</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs text-[#635b52]">
+                            <div class="w-7 h-7 rounded-lg bg-[#FAF7F2] flex items-center justify-center text-[#B08D57] shrink-0 border border-[#e4d4be]/50">
+                                <i class="ph ph-users text-xs"></i>
+                            </div>
+                            <span class="font-medium text-[11px] truncate">3 Tamu Dewasa</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs text-[#635b52]">
+                            <div class="w-7 h-7 rounded-lg bg-[#FAF7F2] flex items-center justify-center text-[#B08D57] shrink-0 border border-[#e4d4be]/50">
+                                <i class="ph ph-bed text-xs"></i>
+                            </div>
+                            <span class="font-medium text-[11px] truncate">1 King + Daybed</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs text-[#635b52]">
+                            <div class="w-7 h-7 rounded-lg bg-[#FAF7F2] flex items-center justify-center text-[#B08D57] shrink-0 border border-[#e4d4be]/50">
+                                <i class="ph ph-buildings text-xs"></i>
+                            </div>
+                            <span class="font-medium text-[11px] truncate">Panoramic 180°</span>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="mt-auto flex items-center gap-2.5">
+                        <button type="button" @click="openRoomModal('Executif')"
+                            class="flex-1 py-3 px-3 rounded-full border border-[#e4d4be] hover:border-[#1E1A16] hover:bg-[#FAF7F2] text-[#1E1A16] text-xs font-semibold text-center transition-all">
+                            Lihat Detail
+                        </button>
+                        <a href="{{ route('form.pesan') }}?tipe=Executif"
+                            class="flex-1 py-3 px-3 rounded-full bg-[#1E1A16] hover:bg-[#B08D57] text-white text-xs font-semibold text-center transition-all shadow-sm hover:shadow-md inline-flex items-center justify-center gap-1.5 group/btn">
+                            <span>Pesan</span>
+                            <i class="ph ph-arrow-right group-hover/btn:translate-x-1 transition-transform text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Centered Button below cards -->
+        <div id="kamar-footer" class="text-center mt-14 sm:mt-18">
+            <a href="{{ route('produk') }}"
+                class="group inline-flex items-center gap-3 bg-[#1E1A16] hover:bg-[#B08D57] text-white px-8 py-4 rounded-full text-xs sm:text-sm font-semibold shadow-xl shadow-black/10 transition-all hover:scale-105 active:scale-95">
+                <span>Lihat Rincian Paket &amp; Fasilitas Lengkap</span>
+                <i class="ph ph-arrow-right group-hover:translate-x-1.5 transition-transform"></i>
+            </a>
+        </div>
+
+    </section>
+
+    <!-- SECTION: Ulasan Tamu (Editorial Testimonials with Staggered Wave) -->
+    <section id="ulasan" class="py-16 sm:py-24 px-6 sm:px-8 max-w-7xl mx-auto overflow-hidden">
+        <div id="ulasan-header" class="text-center max-w-xl mx-auto mb-14">
+            <span class="text-xs font-bold uppercase tracking-wider text-[#B08D57]">Pengalaman Nyata</span>
+            <h2 class="font-serif text-3xl sm:text-4xl font-medium text-[#1E1A16] tracking-tight mt-1">
+                Kata Mereka yang Pernah Singgah
+            </h2>
+            <p class="text-[#635b52] text-xs sm:text-sm mt-2">
+                Kepuasan dan kenyamanan tamu adalah dedikasi utama seluruh staf Bigland.
+            </p>
+        </div>
+
+        <div id="review-cards-container" class="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+            <!-- Review 1 -->
+            <div class="review-card tilt-card bg-white rounded-3xl p-7 border border-[#e4d4be] shadow-md flex flex-col justify-between transition-all duration-500 hover:-translate-y-2 hover:shadow-xl">
+                <div>
+                    <div class="flex text-[#B08D57] gap-1 text-sm mb-4">
+                        <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+                    </div>
+                    <p class="font-sans text-[#1E1A16] text-sm sm:text-[15px] leading-relaxed font-normal mb-6">
+                        “Pelayanan staf sangat ramah dan efisien. Kamar Executif-nya luar biasa dengan pemandangan sunset kota yang memukau dari bathtub.”
+                    </p>
+                </div>
+                <div class="flex items-center gap-3 pt-4 border-t border-[#e4d4be]/60">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop"
+                        alt="Clara" class="w-10 h-10 rounded-full object-cover">
+                    <div>
+                        <span class="text-xs font-bold text-[#1E1A16] block">Clara S.</span>
+                        <span class="text-[11px] text-[#8c8276]">Staycation Pasangan • Executif Suite</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Review 2 -->
+            <div class="review-card tilt-card bg-white rounded-3xl p-7 border border-[#e4d4be] shadow-md flex flex-col justify-between transition-all duration-500 hover:-translate-y-2 hover:shadow-xl">
+                <div>
+                    <div class="flex text-[#B08D57] gap-1 text-sm mb-4">
+                        <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+                    </div>
+                    <p class="font-sans text-[#1E1A16] text-sm sm:text-[15px] leading-relaxed font-normal mb-6">
+                        “Lokasi luar biasa dekat stasiun MRT, sarapan di Bistro sangat variatif dan lezat. Kasur empuk bikin tidur sangat berkualitas.”
+                    </p>
+                </div>
+                <div class="flex items-center gap-3 pt-4 border-t border-[#e4d4be]/60">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop"
+                        alt="Dimas" class="w-10 h-10 rounded-full object-cover">
+                    <div>
+                        <span class="text-xs font-bold text-[#1E1A16] block">Dimas Pratama</span>
+                        <span class="text-[11px] text-[#8c8276]">Business Trip • Deluxe Room</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Review 3 -->
+            <div class="review-card tilt-card bg-white rounded-3xl p-7 border border-[#e4d4be] shadow-md flex flex-col justify-between transition-all duration-500 hover:-translate-y-2 hover:shadow-xl">
+                <div>
+                    <div class="flex text-[#B08D57] gap-1 text-sm mb-4">
+                        <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+                    </div>
+                    <p class="font-sans text-[#1E1A16] text-sm sm:text-[15px] leading-relaxed font-normal mb-6">
+                        “Infinity Sky Pool di lantai 22 benar-benar magis saat sore hari. Pengalaman menginap bintang lima dengan harga yang sangat masuk akal.”
+                    </p>
+                </div>
+                <div class="flex items-center gap-3 pt-4 border-t border-[#e4d4be]/60">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&auto=format&fit=crop"
+                        alt="Nadia" class="w-10 h-10 rounded-full object-cover">
+                    <div>
+                        <span class="text-xs font-bold text-[#1E1A16] block">Nadia Amanda</span>
+                        <span class="text-[11px] text-[#8c8276]">Liburan Keluarga • Standar Room</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: FAQ (Frequently Asked Questions) -->
+    <section id="faq" class="py-16 sm:py-20 px-6 sm:px-8 max-w-4xl mx-auto">
+        <div id="faq-header" class="text-center max-w-xl mx-auto mb-12">
+            <span class="text-xs font-bold uppercase tracking-wider text-[#B08D57]">Bantuan & Informasi</span>
+            <h2 class="font-serif text-3xl sm:text-4xl font-medium text-[#1E1A16] tracking-tight mt-1">
+                Pertanyaan yang Sering Diajukan
+            </h2>
+        </div>
+
+        <div id="faq-list" class="space-y-3" x-data="{ openFaq: 1 }">
+            <!-- FAQ 1 -->
+            <div class="faq-item bg-white rounded-2xl border border-[#e4d4be] overflow-hidden shadow-sm">
+                <button type="button" @click="openFaq = openFaq === 1 ? 0 : 1"
+                    class="w-full px-6 py-4 text-left flex items-center justify-between font-serif font-bold text-sm sm:text-base text-[#1E1A16] hover:text-[#B08D57] transition-colors">
+                    <span>Pukul berapa jadwal Check-in dan Check-out di Bigland?</span>
+                    <i class="ph ph-caret-down text-[#8c8276] transition-transform duration-200"
+                        :class="{ 'rotate-180': openFaq === 1 }"></i>
+                </button>
+                <div x-show="openFaq === 1" x-collapse class="px-6 pb-4 text-xs sm:text-sm text-[#635b52] leading-relaxed">
+                    Waktu standar check-in dimulai pukul 14.00 WIB dan waktu check-out maksimal pukul 12.00 WIB siang. Early check-in atau late check-out dapat diatur sesuai ketersediaan kamar.
+                </div>
+            </div>
+
+            <!-- FAQ 2 -->
+            <div class="faq-item bg-white rounded-2xl border border-[#e4d4be] overflow-hidden shadow-sm">
+                <button type="button" @click="openFaq = openFaq === 2 ? 0 : 2"
+                    class="w-full px-6 py-4 text-left flex items-center justify-between font-serif font-bold text-sm sm:text-base text-[#1E1A16] hover:text-[#B08D57] transition-colors">
+                    <span>Apakah sarapan sudah termasuk dalam tarif pemesanan kamar?</span>
+                    <i class="ph ph-caret-down text-[#8c8276] transition-transform duration-200"
+                        :class="{ 'rotate-180': openFaq === 2 }"></i>
+                </button>
+                <div x-show="openFaq === 2" x-collapse class="px-6 pb-4 text-xs sm:text-sm text-[#635b52] leading-relaxed" style="display: none;">
+                    Untuk tipe Deluxe dan Executif, sarapan prasmanan untuk 2 tamu sudah otomatis termasuk. Untuk tipe Standar, Anda dapat menambahkan paket sarapan melalui opsi layanan tambahan saat reservasi.
+                </div>
+            </div>
+
+            <!-- FAQ 3 -->
+            <div class="faq-item bg-white rounded-2xl border border-[#e4d4be] overflow-hidden shadow-sm">
+                <button type="button" @click="openFaq = openFaq === 3 ? 0 : 3"
+                    class="w-full px-6 py-4 text-left flex items-center justify-between font-serif font-bold text-sm sm:text-base text-[#1E1A16] hover:text-[#B08D57] transition-colors">
+                    <span>Bagaimana kebijakan pembatalan reservasi di Bigland?</span>
+                    <i class="ph ph-caret-down text-[#8c8276] transition-transform duration-200"
+                        :class="{ 'rotate-180': openFaq === 3 }"></i>
+                </button>
+                <div x-show="openFaq === 3" x-collapse class="px-6 pb-4 text-xs sm:text-sm text-[#635b52] leading-relaxed" style="display: none;">
+                    Pembatalan gratis dapat dilakukan hingga 24 jam sebelum tanggal kedatangan Anda. Pembatalan setelah periode tersebut akan dikenakan biaya 1 malam menginap.
+                </div>
+            </div>
+
+            <!-- FAQ 4 -->
+            <div class="faq-item bg-white rounded-2xl border border-[#e4d4be] overflow-hidden shadow-sm">
+                <button type="button" @click="openFaq = openFaq === 4 ? 0 : 4"
+                    class="w-full px-6 py-4 text-left flex items-center justify-between font-serif font-bold text-sm sm:text-base text-[#1E1A16] hover:text-[#B08D57] transition-colors">
+                    <span>Apakah tersedia layanan antar-jemput bandara?</span>
+                    <i class="ph ph-caret-down text-[#8c8276] transition-transform duration-200"
+                        :class="{ 'rotate-180': openFaq === 4 }"></i>
+                </button>
+                <div x-show="openFaq === 4" x-collapse class="px-6 pb-4 text-xs sm:text-sm text-[#635b52] leading-relaxed" style="display: none;">
+                    Ya, Bigland menyediakan layanan armada shuttle premium dari dan menuju Bandara Internasional Soekarno-Hatta (CGK). Anda dapat memesannya langsung saat pengisian form reservasi.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: CTA Banner Reservasi Cepat -->
+    <section id="cta-banner" class="py-12 px-6 sm:px-8 max-w-7xl mx-auto">
+        <div class="cta-box rounded-[2.5rem] bg-[#B08D57] p-8 sm:p-14 text-white flex flex-col md:flex-row items-center justify-between gap-8 shadow-2xl relative overflow-hidden">
+            <div class="cta-content max-w-xl relative z-10">
+                <h2 class="font-serif text-3xl sm:text-4xl font-normal text-white tracking-tight">
+                    Rencanakan Liburan Istimewa Anda Hari Ini
+                </h2>
+                <p class="font-serif text-white/90 text-xs sm:text-sm mt-3 leading-relaxed font-normal">
+                    Dapatkan diskon 10% untuk menginap 3 malam atau lebih, fasilitas complimentary afternoon tea, serta garansi kamar terbaik.
+                </p>
+            </div>
+            <div class="cta-action relative z-10 shrink-0">
+                <a href="{{ route('form.pesan') }}"
+                    class="inline-flex items-center gap-2 bg-[#1E1A16] hover:bg-stone-800 text-white px-8 py-4 rounded-full text-xs font-bold shadow-xl transition-all hover:scale-105 active:scale-95">
+                    <span>Buat Reservasi Sekarang</span>
+                    <i class="ph ph-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER: Luxury Editorial Putih Bersih #FFFFFF dengan Teks #1E1A16 -->
+    <footer id="footer" class="bg-white border-t border-[#e4d4be] pt-16 pb-10 mt-16">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8 grid grid-cols-1 md:grid-cols-12 gap-10 pb-12">
+            <!-- Brand Info -->
+            <div class="footer-col md:col-span-5 space-y-4">
+                <div class="flex items-center gap-2.5">
+                    <div class="w-9 h-9 rounded-full bg-[#B08D57] text-white flex items-center justify-center font-bold text-lg shadow-md shadow-[#B08D57]/25">
+                        <i class="ph-fill ph-buildings"></i>
+                    </div>
+                    <span class="font-serif text-xl font-bold tracking-tight text-[#1E1A16]">Bigland</span>
+                </div>
+                <p class="text-xs text-[#635b52] max-w-sm leading-relaxed">
+                    Hotel kontemporer bintang lima yang mengedepankan kesederhanaan estetika, ketenangan istirahat, dan keramahan personal kelas dunia di pusat Jakarta.
+                </p>
+                <div class="flex gap-3 text-[#8c8276] pt-2">
+                    <a href="#" class="w-8 h-8 rounded-full bg-[#FAF7F2] hover:bg-[#f5ede2] hover:text-[#B08D57] flex items-center justify-center transition-colors"><i class="ph ph-instagram-logo"></i></a>
+                    <a href="#" class="w-8 h-8 rounded-full bg-[#FAF7F2] hover:bg-[#f5ede2] hover:text-[#B08D57] flex items-center justify-center transition-colors"><i class="ph ph-facebook-logo"></i></a>
+                    <a href="#" class="w-8 h-8 rounded-full bg-[#FAF7F2] hover:bg-[#f5ede2] hover:text-[#B08D57] flex items-center justify-center transition-colors"><i class="ph ph-tiktok-logo"></i></a>
+                </div>
+            </div>
+
+            <!-- Links -->
+            <div class="footer-col md:col-span-3 space-y-3">
+                <span class="text-xs font-bold text-[#1E1A16] uppercase tracking-wider block">Navigasi Utama</span>
+                <ul class="space-y-2 text-xs text-[#635b52]">
+                    <li><a href="{{ route('home') }}" class="hover:text-[#1E1A16] transition-colors">Beranda</a></li>
+                    <li><a href="{{ route('produk') }}" class="hover:text-[#1E1A16] transition-colors">Daftar Produk &amp; Kamar</a></li>
+                    <li><a href="{{ route('form.pesan') }}" class="hover:text-[#1E1A16] transition-colors">Formulir Pemesanan</a></li>
+                    <li><a href="{{ route('riwayat') }}" class="hover:text-[#1E1A16] transition-colors">Riwayat Pemesanan</a></li>
+                    <li><a href="{{ route('tentang-kami') }}" class="hover:text-[#1E1A16] transition-colors">Tentang Kami</a></li>
                 </ul>
             </div>
 
-            <div>
-                <h4 class="text-xs font-bold uppercase tracking-wider text-obsidian-900 mb-4">Kontak Resmi</h4>
-                <ul class="space-y-3 text-xs text-stone-500">
-                    <li class="flex items-start gap-2.5">
-                        <i class="ph ph-map-pin text-base text-stone-400 mt-0.5"></i>
-                        <span>Jl. Jend. Sudirman No. 123, Jakarta Pusat, 10220</span>
+            <!-- Contact -->
+            <div class="footer-col md:col-span-4 space-y-3">
+                <span class="text-xs font-bold text-[#1E1A16] uppercase tracking-wider block">Kontak & Reservasi</span>
+                <ul class="space-y-2.5 text-xs text-[#635b52]">
+                    <li class="flex items-center gap-2.5">
+                        <i class="ph ph-map-pin text-base text-[#8c8276]"></i>
+                        <span>Jl. MH Thamrin No. 28, Menteng, Jakarta Pusat</span>
                     </li>
                     <li class="flex items-center gap-2.5">
-                        <i class="ph ph-phone text-base text-stone-400"></i>
-                        <span>(021) 555-0198 / +62 812-3456-7890</span>
+                        <i class="ph ph-phone text-base text-[#8c8276]"></i>
+                        <span>+62 (21) 3988-7700</span>
                     </li>
                     <li class="flex items-center gap-2.5">
-                        <i class="ph ph-envelope-simple text-base text-stone-400"></i>
+                        <i class="ph ph-envelope-simple text-base text-[#8c8276]"></i>
                         <span>reservasi@bigland.com</span>
                     </li>
                 </ul>
             </div>
         </div>
 
-        <div class="max-w-7xl mx-auto px-6 sm:px-8 pt-8 border-t border-stone-100 flex flex-col sm:flex-row items-center justify-between text-xs text-stone-400 gap-4">
+        <div id="footer-bottom" class="max-w-7xl mx-auto px-6 sm:px-8 pt-8 border-t border-[#FAF7F2] flex flex-col sm:flex-row items-center justify-between text-xs text-[#8c8276] gap-4">
             <p>&copy; 2026 Bigland. All rights reserved.</p>
             <div class="flex gap-6">
-                <a href="#" class="hover:text-obsidian-900 transition-colors">Kebijakan Privasi</a>
-                <a href="#" class="hover:text-obsidian-900 transition-colors">Syarat & Ketentuan</a>
+                <a href="#" class="hover:text-[#1E1A16] transition-colors">Kebijakan Privasi</a>
+                <a href="#" class="hover:text-[#1E1A16] transition-colors">Syarat & Ketentuan</a>
             </div>
         </div>
     </footer>
 
     <!-- INTERACTIVE: Quick View Modal Detail Kamar -->
-    <div x-show="modalOpen" 
-         x-transition:enter="transition ease-out duration-200"
-         x-transition:enter-start="opacity-0"
-         x-transition:enter-end="opacity-100"
-         x-transition:leave="transition ease-in duration-150"
-         x-transition:leave-start="opacity-100"
-         x-transition:leave-end="opacity-0"
-         class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-obsidian-950/65 backdrop-blur-sm"
-         style="display: none;"
-         @keydown.escape.window="modalOpen = false">
-        
-        <div @click.away="modalOpen = false"
-             x-show="modalOpen"
-             x-transition:enter="transition ease-out duration-300"
-             x-transition:enter-start="opacity-0 scale-95 translate-y-4"
-             x-transition:enter-end="opacity-100 scale-100 translate-y-0"
-             x-transition:leave="transition ease-in duration-200"
-             x-transition:leave-start="opacity-100 scale-100 translate-y-0"
-             x-transition:leave-end="opacity-0 scale-95 translate-y-4"
-             class="bg-white rounded-[2.5rem] max-w-2xl w-full p-6 sm:p-8 shadow-2xl border border-stone-200 relative overflow-hidden max-h-[90vh] overflow-y-auto">
-            
-            <button @click="modalOpen = false" class="absolute top-5 right-5 w-8 h-8 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-600 flex items-center justify-center text-base transition-colors z-10">
+    <div x-show="modalOpen" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0"
+        x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-150"
+        x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
+        class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#1E1A16]/50 backdrop-blur-sm"
+        style="display: none;" @keydown.escape.window="modalOpen = false">
+
+        <div @click.away="modalOpen = false" x-show="modalOpen" data-lenis-prevent
+            x-transition:enter="transition ease-out duration-300"
+            x-transition:enter-start="opacity-0 scale-95 translate-y-4"
+            x-transition:enter-end="opacity-100 scale-100 translate-y-0"
+            x-transition:leave="transition ease-in duration-200"
+            x-transition:leave-start="opacity-100 scale-100 translate-y-0"
+            x-transition:leave-end="opacity-0 scale-95 translate-y-4"
+            class="bg-white rounded-[2.5rem] max-w-2xl w-full p-6 sm:p-8 shadow-2xl border border-[#e4d4be] relative overflow-hidden max-h-[90vh] overflow-y-auto">
+
+            <button @click="modalOpen = false"
+                class="absolute top-5 right-5 w-8 h-8 rounded-full bg-[#FAF7F2] hover:bg-[#f5ede2] text-[#1E1A16] flex items-center justify-center text-base transition-colors z-10">
                 <i class="ph ph-x"></i>
             </button>
 
-            <div class="relative h-60 sm:h-72 rounded-[2rem] overflow-hidden mb-6 bg-stone-100">
+            <div class="relative h-60 sm:h-72 rounded-[2rem] overflow-hidden mb-6 bg-[#FAF7F2]">
                 <img :src="activeModalRoom.image" :alt="activeModalRoom.name" class="w-full h-full object-cover">
-                <div class="absolute bottom-4 left-4 bg-white/95 backdrop-blur-md px-4 py-1.5 rounded-full text-xs font-extrabold text-obsidian-900 shadow-sm"
-                     x-text="formatRupiah(activeModalRoom.price) + ' / malam'">
+                <div class="absolute bottom-4 left-4 bg-[#1E1A16] text-white px-4 py-1.5 rounded-full text-xs font-bold shadow-md"
+                    x-text="formatRupiah(activeModalRoom.price) + ' / malam'">
                 </div>
             </div>
 
             <div class="space-y-4">
                 <div class="flex items-center justify-between">
                     <div>
-                        <span class="text-[10px] font-bold uppercase tracking-wider text-stone-400">Detail Spesifikasi</span>
-                        <h3 class="text-2xl font-extrabold text-obsidian-900" x-text="activeModalRoom.name"></h3>
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-[#8c8276]">Detail Spesifikasi</span>
+                        <h3 class="font-serif text-2xl font-bold text-[#1E1A16]" x-text="activeModalRoom.name"></h3>
                     </div>
-                    <div class="flex items-center gap-1 text-amber-500 font-bold text-xs bg-amber-50 px-3 py-1 rounded-full">
+                    <div class="flex items-center gap-1 text-[#B08D57] font-bold text-xs bg-[#f5ede2] px-3 py-1 rounded-full border border-[#e4d4be]">
                         <i class="ph-fill ph-star"></i>
                         <span x-text="activeModalRoom.rating"></span>
                     </div>
                 </div>
 
-                <p class="text-xs text-stone-500 leading-relaxed" x-text="activeModalRoom.description"></p>
+                <p class="text-xs text-[#635b52] leading-relaxed" x-text="activeModalRoom.description"></p>
 
-                <div class="grid grid-cols-2 gap-3 py-3 border-y border-stone-100 text-xs">
+                <div class="grid grid-cols-2 gap-3 py-3 border-y border-[#FAF7F2] text-xs">
                     <div class="flex flex-col">
-                        <span class="text-stone-400 text-[10px] uppercase font-bold">Luas Ruangan</span>
-                        <span class="font-bold text-obsidian-900" x-text="activeModalRoom.size"></span>
+                        <span class="text-[#8c8276] text-[10px] uppercase font-bold">Luas Ruangan</span>
+                        <span class="font-bold text-[#1E1A16]" x-text="activeModalRoom.size"></span>
                     </div>
                     <div class="flex flex-col">
-                        <span class="text-stone-400 text-[10px] uppercase font-bold">Kapasitas Maksimal</span>
-                        <span class="font-bold text-obsidian-900" x-text="activeModalRoom.capacity"></span>
+                        <span class="text-[#8c8276] text-[10px] uppercase font-bold">Kapasitas Maksimal</span>
+                        <span class="font-bold text-[#1E1A16]" x-text="activeModalRoom.capacity"></span>
                     </div>
                     <div class="flex flex-col">
-                        <span class="text-stone-400 text-[10px] uppercase font-bold">Tipe Ranjang</span>
-                        <span class="font-bold text-obsidian-900" x-text="activeModalRoom.bed"></span>
+                        <span class="text-[#8c8276] text-[10px] uppercase font-bold">Tipe Ranjang</span>
+                        <span class="font-bold text-[#1E1A16]" x-text="activeModalRoom.bed"></span>
                     </div>
                     <div class="flex flex-col">
-                        <span class="text-stone-400 text-[10px] uppercase font-bold">Pemandangan</span>
-                        <span class="font-bold text-obsidian-900" x-text="activeModalRoom.view"></span>
+                        <span class="text-[#8c8276] text-[10px] uppercase font-bold">Pemandangan</span>
+                        <span class="font-bold text-[#1E1A16]" x-text="activeModalRoom.view"></span>
                     </div>
                 </div>
 
                 <div>
-                    <span class="text-[10px] font-bold uppercase tracking-wider text-stone-400 block mb-2">Fasilitas Termasuk</span>
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-[#8c8276] block mb-2">Fasilitas Termasuk</span>
                     <div class="flex flex-wrap gap-2">
                         <template x-for="item in activeModalRoom.amenities" :key="item">
-                            <span class="bg-stone-50 border border-stone-100 text-stone-700 text-[11px] px-3 py-1 rounded-xl flex items-center gap-1.5 font-medium">
-                                <i class="ph ph-check-circle text-emerald-600"></i>
+                            <span class="bg-[#f5ede2] border border-[#e4d4be] text-[#1E1A16] text-[11px] px-3 py-1 rounded-xl flex items-center gap-1.5 font-medium">
+                                <i class="ph ph-check-circle text-[#B08D57]"></i>
                                 <span x-text="item"></span>
                             </span>
                         </template>
@@ -1462,11 +1119,12 @@
                 </div>
 
                 <div class="pt-4 flex gap-3">
-                    <button type="button" @click="modalOpen = false" class="flex-1 py-3.5 rounded-2xl bg-stone-100 text-stone-700 text-xs font-bold hover:bg-stone-200 transition-colors">
+                    <button type="button" @click="modalOpen = false"
+                        class="flex-1 py-3.5 rounded-2xl bg-[#FAF7F2] text-[#1E1A16] text-xs font-bold hover:bg-[#f5ede2] transition-colors">
                         Tutup
                     </button>
-                    <a :href="'{{ route('form.pesan') }}?tipe=' + activeModalRoom.type" 
-                       class="flex-1 py-3.5 rounded-2xl bg-obsidian-900 text-white text-xs font-bold text-center hover:bg-black transition-all shadow-md">
+                    <a :href="'{{ route('form.pesan') }}?tipe=' + activeModalRoom.type"
+                        class="flex-1 py-3.5 rounded-2xl bg-[#1E1A16] hover:bg-stone-800 text-white text-xs font-bold text-center shadow-md transition-all">
                         Reservasi Kamar Ini
                     </a>
                 </div>
@@ -1474,114 +1132,542 @@
         </div>
     </div>
 
-    <!-- INTERACTIVE: Live Social Proof Booking Notification Toast -->
-    <div x-show="liveToast.show" 
-         x-transition:enter="transition ease-out duration-500"
-         x-transition:enter-start="opacity-0 translate-y-6 scale-90"
-         x-transition:enter-end="opacity-100 translate-y-0 scale-100"
-         x-transition:leave="transition ease-in duration-300"
-         x-transition:leave-start="opacity-100 translate-y-0 scale-100"
-         x-transition:leave-end="opacity-0 translate-y-6 scale-90"
-         class="fixed bottom-6 left-6 z-40 max-w-sm bg-white border border-stone-200 rounded-2xl p-4 shadow-xl flex items-center gap-3"
-         style="display: none;">
-        <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold text-lg shrink-0">
-            <i class="ph-fill ph-bell-ringing"></i>
-        </div>
-        <div class="flex-1 pr-2">
-            <p class="text-[11px] font-bold text-obsidian-900 leading-tight" x-text="liveToast.text"></p>
-            <p class="text-[10px] text-stone-400 mt-0.5" x-text="liveToast.time"></p>
-        </div>
-        <button @click="liveToast.show = false" class="text-stone-300 hover:text-stone-600 text-xs">
-            <i class="ph ph-x"></i>
-        </button>
-    </div>
+    <!-- GSAP for Smooth Section Animations & 3D Tilt (Ease-in-Out) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (!window.gsap) return;
+            gsap.registerPlugin(ScrollTrigger);
 
-    <!-- Sticky Floating Reservation Button -->
-    <div x-show="scrolled" 
-         x-transition:enter="transition ease-out duration-300"
-         x-transition:enter-start="opacity-0 translate-y-8"
-         x-transition:enter-end="opacity-100 translate-y-0"
-         x-transition:leave="transition ease-in duration-200"
-         x-transition:leave-start="opacity-100 translate-y-0"
-         x-transition:leave-end="opacity-0 translate-y-8"
-         class="fixed bottom-6 right-6 z-40"
-         style="display: none;">
-        <a href="{{ route('form.pesan') }}" class="bg-obsidian-900 hover:bg-black text-white px-5 py-3 rounded-full text-xs font-bold shadow-2xl flex items-center gap-2 border border-white/20 hover:scale-105 transition-all">
-            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-            <span>Pesan Kamar Sekarang</span>
-            <i class="ph ph-arrow-up-right"></i>
-        </a>
-    </div>
+            // Universal smooth ease-in-out curve
+            const smoothEase = 'power2.inOut';
 
+            // 1. Hero: Background, Headlines, Subtitle, Aside Panel & Floating Booking Bar (Ease-in-Out)
+            gsap.from('#hero-bg', {
+                scale: 1.08,
+                duration: 1.8,
+                ease: smoothEase
+            });
+            gsap.from('#hero .hl', {
+                filter: 'blur(12px)',
+                opacity: 0,
+                y: 35,
+                duration: 1.1,
+                ease: smoothEase,
+                stagger: 0.15,
+                delay: 0.15
+            });
+            gsap.from('#hero-sub, #hero-hint', {
+                opacity: 0,
+                y: 20,
+                duration: 1.0,
+                ease: smoothEase,
+                delay: 0.45
+            });
+            gsap.from('#hero-panel', {
+                opacity: 0,
+                y: 30,
+                duration: 1.1,
+                ease: smoothEase,
+                delay: 0.35
+            });
+            gsap.from('#hero-book', {
+                opacity: 0,
+                y: 25,
+                duration: 1.0,
+                ease: smoothEase,
+                delay: 0.55
+            });
+
+            // Hero 3D Fan Stack: Scroll-driven "Mencar" Animation (Sesuai scroll pengguna)
+            const heroFanStack = document.querySelector('#hero-fan-stack');
+            if (heroFanStack) {
+                const getSpreadX = () => {
+                    if (window.innerWidth >= 1280) return 165;
+                    if (window.innerWidth >= 1024) return 140;
+                    if (window.innerWidth >= 640)  return 105;
+                    return 60;
+                };
+
+                const getInitialOffset = () => {
+                    return window.innerWidth >= 1024 ? 18 : 10;
+                };
+
+                // Posisikan semua kartu di tengah stack
+                gsap.set('.hero-fan-card', {
+                    xPercent: -50,
+                    yPercent: -50,
+                    left: '50%',
+                    top: '50%',
+                    transformOrigin: '50% 80%'
+                });
+
+                // Posisi awal (tertumpuk rapi sedikit memiring seperti kartu remi)
+                const initX = getInitialOffset();
+                gsap.set('.hero-fan-card-1', { x: -initX, y: 0, rotation: -4, scale: 0.95 });
+                gsap.set('.hero-fan-card-2', { x: 0, y: 0, rotation: 0, scale: 1.0 });
+                gsap.set('.hero-fan-card-3', { x: initX, y: 0, rotation: 4, scale: 0.95 });
+
+                // ScrollTrigger timeline: saat user scroll ke bawah, kartu "mencar" memisah
+                gsap.timeline({
+                    scrollTrigger: {
+                        trigger: '#hero',
+                        start: 'top top',
+                        end: '+=350',
+                        scrub: 0.8,
+                        invalidateOnRefresh: true,
+                    }
+                })
+                .to('.hero-fan-card-1', {
+                    x: () => -getSpreadX(),
+                    y: -14,
+                    rotation: -8,
+                    scale: 0.98,
+                    ease: 'power2.out'
+                }, 0)
+                .to('.hero-fan-card-2', {
+                    x: 0,
+                    y: -10,
+                    rotation: 0,
+                    scale: 1.04,
+                    ease: 'power2.out'
+                }, 0)
+                .to('.hero-fan-card-3', {
+                    x: () => getSpreadX(),
+                    y: 12,
+                    rotation: 8,
+                    scale: 0.98,
+                    ease: 'power2.out'
+                }, 0);
+            }
+
+            // 2. Section About: Left Column Info, SVG Trail, Umbrella & 3 Portrait Cards (Ease-in-Out)
+            gsap.fromTo('#about-info',
+                { y: 35, opacity: 0 },
+                {
+                    y: 0,
+                    opacity: 1,
+                    duration: 1.0,
+                    ease: smoothEase,
+                    immediateRender: false,
+                    scrollTrigger: { trigger: '#about', start: 'top 85%', toggleActions: 'play none none reverse' }
+                }
+            );
+
+            const trail = document.querySelector('#about-trail path');
+            if (trail) {
+                gsap.from(trail, {
+                    strokeDashoffset: 400,
+                    strokeDasharray: 400,
+                    duration: 1.8,
+                    ease: smoothEase,
+                    scrollTrigger: { trigger: '#about-trail', start: 'top 85%', toggleActions: 'play none none reverse' }
+                });
+            }
+            gsap.from('#about-umbrella', {
+                scale: 0,
+                rotate: -45,
+                duration: 1.0,
+                ease: smoothEase,
+                scrollTrigger: { trigger: '#about-trail', start: 'top 85%', delay: 0.4, toggleActions: 'play none none reverse' }
+            });
+
+            gsap.fromTo('#about .about-card', 
+                { y: 40, opacity: 0 }, 
+                { 
+                    y: 0, 
+                    opacity: 1, 
+                    duration: 1.0, 
+                    stagger: 0.18, 
+                    ease: smoothEase,
+                    immediateRender: false,
+                    scrollTrigger: { trigger: '#about', start: 'top 85%', toggleActions: 'play none none reverse' }
+                }
+            );
+
+            // 3. Section Partner Brand Strip: Container & Logos (Ease-in-Out)
+            gsap.fromTo('#partner-strip', 
+                { y: 35, opacity: 0 }, 
+                { 
+                    y: 0, 
+                    opacity: 1, 
+                    duration: 1.0, 
+                    ease: smoothEase,
+                    immediateRender: false,
+                    scrollTrigger: { trigger: '#partner-strip', start: 'top 88%', toggleActions: 'play none none reverse' }
+                }
+            );
+            gsap.fromTo('#partner-strip .partner-logo',
+                { scale: 0.9, opacity: 0 },
+                {
+                    scale: 1,
+                    opacity: 1,
+                    duration: 0.8,
+                    stagger: 0.08,
+                    ease: smoothEase,
+                    immediateRender: false,
+                    scrollTrigger: { trigger: '#partner-strip', start: 'top 88%', toggleActions: 'play none none reverse' }
+                }
+            );
+
+            // 4. Section Pengalaman: 3 Vertical Experiential Cards & Button (Ease-in-Out)
+            gsap.fromTo('#pengalaman .exp-card', 
+                { y: 45, opacity: 0, scale: 0.96 }, 
+                { 
+                    y: 0, 
+                    opacity: 1, 
+                    scale: 1,
+                    duration: 1.0, 
+                    stagger: 0.18, 
+                    ease: smoothEase,
+                    immediateRender: false,
+                    scrollTrigger: { trigger: '#pengalaman', start: 'top 85%', toggleActions: 'play none none reverse' }
+                }
+            );
+            gsap.fromTo('#pengalaman-btn',
+                { y: 25, opacity: 0 },
+                {
+                    y: 0,
+                    opacity: 1,
+                    duration: 0.9,
+                    ease: smoothEase,
+                    immediateRender: false,
+                    scrollTrigger: { trigger: '#pengalaman-btn', start: 'top 90%', toggleActions: 'play none none reverse' }
+                }
+            );
+
+            // 5. Section Wedding: Header, 3D Fan-out Gallery, & Bottom CTA (Ease-in-Out)
+            gsap.fromTo('#wedding-header',
+                { y: 35, opacity: 0 },
+                {
+                    y: 0,
+                    opacity: 1,
+                    duration: 1.0,
+                    ease: smoothEase,
+                    immediateRender: false,
+                    scrollTrigger: { trigger: '#wedding', start: 'top 85%', toggleActions: 'play none none reverse' }
+                }
+            );
+            gsap.fromTo('#wedding-gallery', 
+                { y: 40, opacity: 0 }, 
+                { 
+                    y: 0, 
+                    opacity: 1, 
+                    duration: 1.1, 
+                    ease: smoothEase,
+                    immediateRender: false,
+                    scrollTrigger: { trigger: '#wedding', start: 'top 85%', toggleActions: 'play none none reverse' }
+                }
+            );
+            gsap.fromTo('#wedding-footer',
+                { y: 30, opacity: 0 },
+                {
+                    y: 0,
+                    opacity: 1,
+                    duration: 0.9,
+                    ease: smoothEase,
+                    immediateRender: false,
+                    scrollTrigger: { trigger: '#wedding-footer', start: 'top 90%', toggleActions: 'play none none reverse' }
+                }
+            );
+
+            // 6. Section Kamar: Caramel Container Header, Room Cards & Button (Ease-in-Out)
+            gsap.fromTo('#kamar-header',
+                { y: 35, opacity: 0 },
+                {
+                    y: 0,
+                    opacity: 1,
+                    duration: 1.0,
+                    ease: smoothEase,
+                    immediateRender: false,
+                    scrollTrigger: { trigger: '#kamar', start: 'top 85%', toggleActions: 'play none none reverse' }
+                }
+            );
+            gsap.fromTo('#kamar .room-card', 
+                { y: 45, opacity: 0, scale: 0.96 }, 
+                { 
+                    y: 0, 
+                    opacity: 1, 
+                    scale: 1, 
+                    duration: 1.0, 
+                    stagger: 0.18, 
+                    ease: smoothEase,
+                    immediateRender: false,
+                    scrollTrigger: { trigger: '#kamar', start: 'top 85%', toggleActions: 'play none none reverse' }
+                }
+            );
+            gsap.fromTo('#kamar-footer',
+                { y: 25, opacity: 0 },
+                {
+                    y: 0,
+                    opacity: 1,
+                    duration: 0.9,
+                    ease: smoothEase,
+                    immediateRender: false,
+                    scrollTrigger: { trigger: '#kamar-footer', start: 'top 92%', toggleActions: 'play none none reverse' }
+                }
+            );
+
+            // 7. Section Tarif & Fasilitas (Harga): Header & Pricing Cards (Ease-in-Out)
+            gsap.fromTo('#harga-header',
+                { y: 35, opacity: 0 },
+                {
+                    y: 0,
+                    opacity: 1,
+                    duration: 1.0,
+                    ease: smoothEase,
+                    immediateRender: false,
+                    scrollTrigger: { trigger: '#harga', start: 'top 85%', toggleActions: 'play none none reverse' }
+                }
+            );
+            gsap.fromTo('#harga .pricing-card', 
+                { y: 40, opacity: 0 }, 
+                { 
+                    y: 0, 
+                    opacity: 1, 
+                    duration: 1.0, 
+                    stagger: 0.16, 
+                    ease: smoothEase,
+                    immediateRender: false,
+                    scrollTrigger: { trigger: '#harga', start: 'top 85%', toggleActions: 'play none none reverse' }
+                }
+            );
+
+            // 8. Section Lokasi: Info Text, Transit Items & Interactive Map (Ease-in-Out)
+            gsap.fromTo('#lokasi-info', 
+                { x: -35, opacity: 0 }, 
+                { 
+                    x: 0, 
+                    opacity: 1, 
+                    duration: 1.0, 
+                    ease: smoothEase,
+                    immediateRender: false,
+                    scrollTrigger: { trigger: '#lokasi', start: 'top 85%', toggleActions: 'play none none reverse' }
+                }
+            );
+            gsap.fromTo('#lokasi-info .transit-item',
+                { y: 20, opacity: 0 },
+                {
+                    y: 0,
+                    opacity: 1,
+                    duration: 0.8,
+                    stagger: 0.12,
+                    ease: smoothEase,
+                    immediateRender: false,
+                    scrollTrigger: { trigger: '#lokasi', start: 'top 85%', toggleActions: 'play none none reverse' }
+                }
+            );
+            gsap.fromTo('#lokasi-map', 
+                { x: 35, opacity: 0 }, 
+                { 
+                    x: 0, 
+                    opacity: 1, 
+                    duration: 1.0, 
+                    ease: smoothEase,
+                    immediateRender: false,
+                    scrollTrigger: { trigger: '#lokasi', start: 'top 85%', toggleActions: 'play none none reverse' }
+                }
+            );
+
+            // 9. Section Ulasan Tamu: Header & Testimonial Cards (Ease-in-Out)
+            gsap.fromTo('#ulasan-header',
+                { y: 35, opacity: 0 },
+                {
+                    y: 0,
+                    opacity: 1,
+                    duration: 1.0,
+                    ease: smoothEase,
+                    immediateRender: false,
+                    scrollTrigger: { trigger: '#ulasan', start: 'top 85%', toggleActions: 'play none none reverse' }
+                }
+            );
+            gsap.fromTo('#ulasan .review-card', 
+                { y: 35, opacity: 0 }, 
+                { 
+                    y: 0, 
+                    opacity: 1, 
+                    duration: 1.0, 
+                    stagger: 0.16, 
+                    ease: smoothEase,
+                    immediateRender: false,
+                    scrollTrigger: { trigger: '#ulasan', start: 'top 85%', toggleActions: 'play none none reverse' }
+                }
+            );
+
+            // 10. Section FAQ: Header & Accordion Items (Ease-in-Out)
+            gsap.fromTo('#faq-header',
+                { y: 35, opacity: 0 },
+                {
+                    y: 0,
+                    opacity: 1,
+                    duration: 1.0,
+                    ease: smoothEase,
+                    immediateRender: false,
+                    scrollTrigger: { trigger: '#faq', start: 'top 85%', toggleActions: 'play none none reverse' }
+                }
+            );
+            gsap.fromTo('#faq .faq-item',
+                { y: 25, opacity: 0 },
+                {
+                    y: 0,
+                    opacity: 1,
+                    duration: 0.85,
+                    stagger: 0.12,
+                    ease: smoothEase,
+                    immediateRender: false,
+                    scrollTrigger: { trigger: '#faq', start: 'top 85%', toggleActions: 'play none none reverse' }
+                }
+            );
+
+            // 11. Section CTA Banner: Container, Text & Action Button (Ease-in-Out)
+            gsap.fromTo('#cta-banner .cta-box',
+                { scale: 0.96, y: 35, opacity: 0 },
+                {
+                    scale: 1,
+                    y: 0,
+                    opacity: 1,
+                    duration: 1.0,
+                    ease: smoothEase,
+                    immediateRender: false,
+                    scrollTrigger: { trigger: '#cta-banner', start: 'top 88%', toggleActions: 'play none none reverse' }
+                }
+            );
+            gsap.fromTo('#cta-banner .cta-content',
+                { x: -25, opacity: 0 },
+                {
+                    x: 0,
+                    opacity: 1,
+                    duration: 0.9,
+                    ease: smoothEase,
+                    immediateRender: false,
+                    scrollTrigger: { trigger: '#cta-banner', start: 'top 88%', toggleActions: 'play none none reverse' }
+                }
+            );
+            gsap.fromTo('#cta-banner .cta-action',
+                { x: 25, opacity: 0 },
+                {
+                    x: 0,
+                    opacity: 1,
+                    duration: 0.9,
+                    ease: smoothEase,
+                    immediateRender: false,
+                    scrollTrigger: { trigger: '#cta-banner', start: 'top 88%', toggleActions: 'play none none reverse' }
+                }
+            );
+
+            // 12. Section Footer: Columns & Copyright (Ease-in-Out)
+            gsap.fromTo('#footer .footer-col',
+                { y: 30, opacity: 0 },
+                {
+                    y: 0,
+                    opacity: 1,
+                    duration: 0.9,
+                    stagger: 0.12,
+                    ease: smoothEase,
+                    immediateRender: false,
+                    scrollTrigger: { trigger: '#footer', start: 'top 92%', toggleActions: 'play none none reverse' }
+                }
+            );
+            gsap.fromTo('#footer-bottom',
+                { opacity: 0 },
+                {
+                    opacity: 1,
+                    duration: 0.8,
+                    ease: smoothEase,
+                    immediateRender: false,
+                    scrollTrigger: { trigger: '#footer', start: 'top 92%', toggleActions: 'play none none reverse' }
+                }
+            );
+
+            // 13. Desktop Interactive 3D Card Tilt with Ease-in-Out Return
+            if (window.matchMedia('(min-width: 1024px)').matches) {
+                document.querySelectorAll('.tilt-card').forEach(card => {
+                    card.addEventListener('mousemove', e => {
+                        const rect = card.getBoundingClientRect();
+                        const x = e.clientX - rect.left - rect.width / 2;
+                        const y = e.clientY - rect.top - rect.height / 2;
+                        gsap.to(card, {
+                            rotationY: x * 0.025,
+                            rotationX: -y * 0.025,
+                            ease: 'power1.inOut',
+                            duration: 0.35,
+                            transformPerspective: 1000
+                        });
+                    });
+                    card.addEventListener('mouseleave', () => {
+                        gsap.to(card, {
+                            rotationY: 0,
+                            rotationX: 0,
+                            ease: smoothEase,
+                            duration: 0.6
+                        });
+                    });
+                });
+            }
+
+            // 14. Smooth Native Scroll for Anchor Links
+            document.querySelectorAll('a[href*="#"]').forEach(a => {
+                a.addEventListener('click', e => {
+                    const href = a.getAttribute('href');
+                    if (!href) return;
+                    try {
+                        const url = new URL(a.href, window.location.href);
+                        if (url.pathname === window.location.pathname && url.hash && url.hash.length > 1) {
+                            const target = document.querySelector(url.hash);
+                            if (target) {
+                                e.preventDefault();
+                                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                setTimeout(() => ScrollTrigger.refresh(), 400);
+                            }
+                        }
+                    } catch (_) {}
+                });
+            });
+
+            // 15. Bulletproof Safety Fallback: Menjamin seluruh elemen section TIDAK PERNAH blank / tak kasat mata
+            const ensureElementsVisible = () => {
+                ScrollTrigger.refresh();
+                document.querySelectorAll(`
+                    .room-card, .about-card, .exp-card, .pricing-card, .review-card, 
+                    #wedding-gallery, .partner-logo, #about-info, #wedding-header, 
+                    #wedding-footer, #kamar-header, #kamar-footer, #harga-header, 
+                    #lokasi-info, #lokasi-map, #ulasan-header, #faq-header, .faq-item, 
+                    .cta-box, .cta-content, .cta-action, .footer-col, #footer-bottom
+                `).forEach(el => {
+                    if (window.getComputedStyle(el).opacity < 0.5) {
+                        gsap.to(el, {
+                            opacity: 1,
+                            y: 0,
+                            x: 0,
+                            scale: 1,
+                            duration: 0.5,
+                            ease: smoothEase,
+                            overwrite: 'auto'
+                        });
+                    }
+                });
+            };
+
+            setTimeout(ensureElementsVisible, 800);
+            setTimeout(ensureElementsVisible, 1800);
+
+            window.addEventListener('load', () => ScrollTrigger.refresh());
+        });
+    </script>
+
+    <!-- Alpine.js Application Logic -->
     <script>
         function biglandApp() {
             return {
                 scrolled: false,
                 mobileMenuOpen: false,
-                activeFilter: 'all',
-                reviewFilter: 'all',
                 modalOpen: false,
 
-                currentHeroSlide: 0,
-                heroSlides: [
-                    {
-                        url: 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1800&auto=format&fit=crop',
-                        caption: 'Arsitektur Mewah di Pusat Sudirman Jakarta',
-                        tag: 'KEMEMEWAHAN MODERN'
-                    },
-                    {
-                        url: 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?q=80&w=1800&auto=format&fit=crop',
-                        caption: 'Infinity Sky Pool Lantai 22 Menghadap Kota',
-                        tag: 'ROOFTOP EXPERIENCE'
-                    },
-                    {
-                        url: 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=1800&auto=format&fit=crop',
-                        caption: 'Executif Suite dengan Jacuzzi Pribadi',
-                        tag: 'VIP COMFORT'
-                    }
-                ],
-
-                roomPhotos: {
-                    'Standar': [
-                        'https://images.unsplash.com/photo-1611892440504-42a792e24d32?q=80&w=1000&auto=format&fit=crop',
-                        'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?q=80&w=1000&auto=format&fit=crop',
-                        'https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=1000&auto=format&fit=crop'
-                    ],
-                    'Deluxe': [
-                        'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=1000&auto=format&fit=crop',
-                        'https://images.unsplash.com/photo-1566665797739-1674de7a421a?q=80&w=1000&auto=format&fit=crop',
-                        'https://images.unsplash.com/photo-1591088398332-8a7791972843?q=80&w=1000&auto=format&fit=crop'
-                    ],
-                    'Executif': [
-                        'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=1000&auto=format&fit=crop',
-                        'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?q=80&w=1000&auto=format&fit=crop',
-                        'https://images.unsplash.com/photo-1618773928121-c32242e63f39?q=80&w=1000&auto=format&fit=crop'
-                    ]
-                },
-                currentPhotoIndex: {
-                    Standar: 0,
-                    Deluxe: 0,
-                    Executif: 0
-                },
-
                 quickBooking: {
-                    checkin: new Date().toISOString().split('T')[0],
+                    checkin: '',
                     tipe: 'Standar',
                     durasi: 1,
-                },
-
-                calc: {
-                    tipe: 'Standar',
-                    harga: 500000,
-                    durasi: 1,
-                    breakfast: false,
-                    airportTransfer: false,
-                },
-
-                liveToast: {
-                    show: false,
-                    text: 'Rizky baru saja memesan Deluxe Room (2 Malam)',
-                    time: '3 menit lalu'
                 },
 
                 roomData: {
@@ -1589,40 +1675,40 @@
                         type: 'Standar',
                         name: 'Standar Room',
                         price: 500000,
-                        rating: '4.8 (320+ Ulasan)',
+                        rating: '4.8',
                         size: '24 m²',
-                        capacity: '2 Dewasa + 1 Anak',
-                        bed: '1 Queen Size Bed',
-                        view: 'Courtyard Minimalist View',
-                        image: 'https://images.unsplash.com/photo-1611892440504-42a792e24d32?q=80&w=1000&auto=format&fit=crop',
-                        description: 'Dirancang dengan tata ruang minimalis fungsional untuk mengutamakan ketenangan tidur dan efisiensi. Dilengkapi material linen organik dan sirkulasi alami.',
-                        amenities: ['High-Speed WiFi 500Mbps', 'Smart TV 43" (Netflix Ready)', 'Rain Shower & Water Heater', 'Safety Deposit Box', 'Mineral Water & Teh Artisan', 'AC Inverter Daikin']
+                        capacity: '2 Dewasa',
+                        bed: '1 Queen Bed',
+                        view: 'City View',
+                        description: 'Dirancang untuk kenyamanan maksimal dengan estetika minimalis modern, kasur ortopedik berkualitas tinggi, serta fasilitas esensial lengkap untuk pelancong bisnis dan liburan mandiri.',
+                        image: 'https://images.unsplash.com/photo-1611892440504-42a792e24d32?q=80&w=800&auto=format&fit=crop',
+                        amenities: ['Wi-Fi 6 Berkecepatan Tinggi', 'Smart TV 43" (Netflix)', 'Rain Shower & Water Heater', 'Safety Deposit Box', 'Complimentary Mineral Water', 'Coffee & Tea Maker']
                     },
                     'Deluxe': {
                         type: 'Deluxe',
-                        name: 'Deluxe Room',
+                        name: 'Deluxe Suite',
                         price: 800000,
-                        rating: '4.9 (540+ Ulasan)',
+                        rating: '4.9',
                         size: '36 m²',
-                        capacity: '2 Dewasa + 2 Anak',
-                        bed: '1 King Size Bed (Pillow Top)',
-                        view: 'Panoramic City Skyline',
-                        image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=1000&auto=format&fit=crop',
-                        description: 'Ruang yang lebih lega dengan panorama cakrawala kota Jakarta. Dilengkapi meja kerja fungsional, sofa santai, dan bathtub terpisah untuk relaksasi total.',
-                        amenities: ['Bathtub & Separate Rain Shower', 'Nespresso Coffee Machine', 'Smart TV 55" 4K', 'Ergonomic Workstation', 'Luxury Bathrobes & Slippers', 'Akses Kolam Renang Rooftop']
+                        capacity: '2 Dewasa, 1 Anak',
+                        bed: '1 King Size Bed',
+                        view: 'Skyline & Sunset View',
+                        description: 'Ruang yang lebih lega dengan sofa santai terpisah, balkon privat dengan panorama kota metropolitan, serta pencahayaan hangat alami yang menciptakan suasana beristirahat paripurna.',
+                        image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800&auto=format&fit=crop',
+                        amenities: ['Wi-Fi 6 Ultra Fast', 'Smart TV 55" 4K', 'Balkon Privat dengan Meja Teh', 'Mesin Kopi Nespresso', 'Bathrobes & Premium Toiletries', 'Sarapan Prasmanan 2 Orang']
                     },
                     'Executif': {
                         type: 'Executif',
                         name: 'Executif Suite',
                         price: 1200000,
-                        rating: '5.0 (VIP Choice)',
-                        size: '55 m²',
+                        rating: '5.0',
+                        size: '54 m²',
                         capacity: '3 Dewasa',
-                        bed: 'Super King Size (200x200)',
-                        view: 'High-Floor 360° Skyline View',
-                        image: 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=1000&auto=format&fit=crop',
-                        description: 'Puncak kemewahan di Bigland. Menghadirkan living room terpisah, private jacuzzi dengan pemandangan kota, serta akses gratis ke Executive Sky Lounge sepanjang hari.',
-                        amenities: ['Akses Eksklusif Sky Lounge', 'Private Jacuzzi with View', 'Free Restocked Minibar', 'Late Checkout s/d 15.00 WIB', 'Private Check-in Service', 'Complimentary Evening Cocktails']
+                        bed: '1 Super King + Daybed',
+                        view: 'Panoramic Cityscape 180°',
+                        description: 'Puncak kemewahan di Bigland dengan bathtub panoramik menghadap cakrawala gedung tinggi, ruang tamu eksekutif luas, fasilitas bar pribadi, serta akses VIP tanpa batas.',
+                        image: 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=800&auto=format&fit=crop',
+                        amenities: ['Akses Eksklusif Executive Lounge', 'Bathtub Marmer Panoramik', 'Smart TV 65" Surround Sound', 'Afternoon Tea & Cocktails Harian', 'Layanan Butler 24 Jam', 'Antar-Jemput Bandara Gratis']
                     }
                 },
 
@@ -1631,33 +1717,14 @@
                 init() {
                     this.activeModalRoom = this.roomData['Standar'];
 
+                    const today = new Date().toISOString().split('T')[0];
+                    this.quickBooking.checkin = today;
+
                     window.addEventListener('scroll', () => {
-                        this.scrolled = window.scrollY > 120;
+                        this.scrolled = window.pageYOffset > 50;
                     });
 
-                    setInterval(() => {
-                        this.currentHeroSlide = (this.currentHeroSlide + 1) % this.heroSlides.length;
-                    }, 5000);
-
-                    const sampleBookings = [
-                        { text: 'Dinda baru saja memesan Executif Suite', time: '1 menit lalu' },
-                        { text: 'Ahmad mengonfirmasi reservasi Standar Room', time: '4 menit lalu' },
-                        { text: 'Budi memesan Deluxe Room untuk akhir pekan', time: 'Baru saja' },
-                    ];
-                    let toastIdx = 0;
-                    setTimeout(() => {
-                        this.liveToast = { show: true, ...sampleBookings[0] };
-                    }, 2500);
-
-                    setInterval(() => {
-                        this.liveToast.show = false;
-                        setTimeout(() => {
-                            toastIdx = (toastIdx + 1) % sampleBookings.length;
-                            this.liveToast = { show: true, ...sampleBookings[toastIdx] };
-                        }, 1000);
-                    }, 9000);
-
-                    this.setupRevealObserver();
+                    this.initScrollReveal();
                 },
 
                 openRoomModal(type) {
@@ -1668,45 +1735,29 @@
                 },
 
                 formatRupiah(number) {
-                    return 'Rp ' + Number(number).toLocaleString('id-ID');
-                },
-
-                getLongStayDiscount() {
-                    if (this.calc.durasi >= 3) {
-                        return (this.calc.harga * this.calc.durasi) * 0.10;
-                    }
-                    return 0;
-                },
-
-                getTotalEstimasi() {
-                    let roomTotal = this.calc.harga * this.calc.durasi;
-                    let breakfastTotal = this.calc.breakfast ? (80000 * this.calc.durasi) : 0;
-                    let airportTotal = this.calc.airportTransfer ? 150000 : 0;
-                    let discount = this.getLongStayDiscount();
-
-                    return (roomTotal + breakfastTotal + airportTotal) - discount;
+                    return new Intl.NumberFormat('id-ID', {
+                        style: 'currency',
+                        currency: 'IDR',
+                        maximumFractionDigits: 0
+                    }).format(number);
                 },
 
                 submitQuickBooking() {
-                    let url = "{{ route('form.pesan') }}" 
+                    let url = "{{ route('form.pesan') }}"
                         + "?tipe=" + encodeURIComponent(this.quickBooking.tipe)
                         + "&tgl=" + encodeURIComponent(this.quickBooking.checkin)
                         + "&durasi=" + encodeURIComponent(this.quickBooking.durasi);
                     window.location.href = url;
                 },
 
-                setupRevealObserver() {
+                initScrollReveal() {
                     const observer = new IntersectionObserver((entries) => {
                         entries.forEach(entry => {
                             if (entry.isIntersecting) {
                                 entry.target.classList.add('active');
-                                observer.unobserve(entry.target);
                             }
                         });
-                    }, {
-                        threshold: 0.1,
-                        rootMargin: '0px 0px -40px 0px'
-                    });
+                    }, { threshold: 0.12 });
 
                     this.$nextTick(() => {
                         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
@@ -1716,4 +1767,5 @@
         }
     </script>
 </body>
+
 </html>
