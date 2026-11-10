@@ -29,25 +29,6 @@ Aplikasi web pemesanan kamar hotel (reservasi) berbasis **Laravel 13** dengan ta
 
 ---
 
-## 🗄️ Struktur Data
-
-Tabel utama: `tbl_pemesanan`
-
-| Kolom | Keterangan |
-| --- | --- |
-| `user_id` | Relasi ke `users` (nullable, karena reservasi bisa tanpa login) |
-| `nama` | Nama lengkap pemesan |
-| `jenis_kelamin` | `Laki-laki` / `Perempuan` |
-| `nomor_identitas` | NIK 16 digit |
-| `tipe_kamar` | Standar / Deluxe / Executif |
-| `harga` | Harga kamar per malam |
-| `tanggal_pesan` | Tanggal check-in |
-| `durasi` | Jumlah malam |
-| `diskon` | Diskon yang diberikan |
-| `total_bayar` | Total biaya akhir |
-
----
-
 ## 🚀 Instalasi & Menjalankan Project
 
 ### Prasyarat
